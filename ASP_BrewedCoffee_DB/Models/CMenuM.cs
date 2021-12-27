@@ -1,4 +1,4 @@
-﻿namespace ASP_BrewedCoffee_v2.Models;
+﻿namespace ASP_BrewedCoffee_DB.Models;
 public class CMenuItemM
 {
     public int ID { get; set; }
@@ -32,7 +32,7 @@ public class CBuildCategoryStrategyM : IBuildMenuStrategy
     public CMenuM GetMenuData()
     {
         Task<CTableM?> table; 
-        if (CConf.DB != null) table = CFilesM.Instance.GetData<CDBCategoryM>(CConf.DB, new CFilterOptionsBuilderM().Build());
+        if (CConf.DB != null) table = CFilesM.Instance.GetData(CConf.DB.Categories, new CFilterOptionsBuilderM().Build());
         else table = CFilesM.Instance.GetData(CConf.CategoriesDataPath, new CFilterOptionsBuilderM().Build());
 
         var menu = new CMenuM();
@@ -56,7 +56,7 @@ public class CBuildCategoryStrategyM : IBuildMenuStrategy
     }
     public int GetCount(CMenuItemM menu_item) => 
         (CConf.DB != null) ? 
-        CFilesM.Instance.GetCount<CDBCategoryM>(CConf.DB, new CFilterOptionsBuilderM().AddFilter((table_line) => table_line["Categories"].Contains(menu_item.Title)).Build())
+        CFilesM.Instance.GetCount(CConf.DB.Categories, new CFilterOptionsBuilderM().AddFilter((table_line) => table_line["Categories"].Contains(menu_item.Title)).Build())
         : CFilesM.Instance.GetCount(CConf.PostsDataPath, new CFilterOptionsBuilderM().AddFilter((table_line) => table_line["Categories"].Contains(menu_item.Title)).Build());
     
 }

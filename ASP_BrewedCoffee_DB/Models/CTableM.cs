@@ -1,4 +1,4 @@
-﻿namespace ASP_BrewedCoffee_v2.Models;
+﻿namespace ASP_BrewedCoffee_DB.Models;
 public class CTableLineM : Dictionary<string, string> { }
 public class CTableM : List<CTableLineM>
 {

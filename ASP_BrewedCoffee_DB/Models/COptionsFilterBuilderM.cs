@@ -1,4 +1,4 @@
-﻿namespace ASP_BrewedCoffee_v2.Models;
+﻿namespace ASP_BrewedCoffee_DB.Models;
 public class CFilterOptionsBuilderM
 {
     private CFilterOptionsM FilterOptions = new CFilterOptionsM();

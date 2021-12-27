@@ -1,4 +1,4 @@
-﻿@using ASP_BrewedCoffee.Models;
+﻿@using ASP_BrewedCoffee_DB.Models;
 @{ int posts_count = CConf.CountFilteredPosts; }
 <div id="content">
     @await Html.PartialAsync("_Sketches")
@@ -6,5 +6,4 @@
     {
         @await Html.PartialAsync("_Pagination")
     }
-
 </div>

@@ -1,4 +1,4 @@
-﻿namespace ASP_BrewedCoffee_v2;
+﻿namespace ASP_BrewedCoffee_DB.Models;
 public class CFavoritesM
 {
     private RequestDelegate Next;

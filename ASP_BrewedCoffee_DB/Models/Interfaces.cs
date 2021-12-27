@@ -1,11 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace ASP_BrewedCoffee_v2.Models;
+namespace ASP_BrewedCoffee_DB.Models;
 public interface IData
 {
     delegate bool DFilter(CTableLineM line);
     class CFilters : List<DFilter> { }
-    Task<CTableM> GetData(string Path, CFilterOptionsM options = null);
+    Task<CTableM?> GetData(string Path, CFilterOptionsM options = null);
+    //Task<CTableM?> GetData(DbSet<IDBItem> db_set, CFilterOptionsM options = null);
     void SaveData(string Path, CTableM data);
     int GetCount(string Path, CFilterOptionsM options = null);
 }

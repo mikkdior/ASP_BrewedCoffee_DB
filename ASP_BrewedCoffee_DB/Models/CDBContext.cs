@@ -1,10 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace ASP_BrewedCoffee_v2.Models;
+namespace ASP_BrewedCoffee_DB.Models;
 public class CDBFactory: IDataAccessFactory
 {
     public IDataAccess Create(string Path) => CConf.DB;
 }
+/*public class CEntityFile: DbContext
+{
+
+}*/
 public class CDBContext : DbContext, IDataAccess
 {
     public DbSet<CDBPostM> Posts { get; set; }

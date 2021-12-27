@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace ASP_BrewedCoffee_v2.Models;
+namespace ASP_BrewedCoffee_DB.Models;
 public class CPostsBuilderM
 {
     private CFilterOptionsM FilterOptions = new CFilterOptionsM();

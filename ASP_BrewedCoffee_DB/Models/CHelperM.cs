@@ -1,4 +1,4 @@
-﻿namespace ASP_BrewedCoffee_v2.Models;
+﻿namespace ASP_BrewedCoffee_DB.Models;
 public static class CHelperM
 {
     public static DateTime[] GetDates(string id, CMenuM menu)

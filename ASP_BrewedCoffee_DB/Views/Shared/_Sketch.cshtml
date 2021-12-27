@@ -1,6 +1,6 @@
 ﻿<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-@using ASP_BrewedCoffee.Models;
-@{RPostM post = Model;
+@using ASP_BrewedCoffee_DB.Models;
+@{CPostM post = Model;
     var favorites = (List<string>)Context.Items["favorites"];
     var likes = (List<string>)Context.Items["likes"];
 }

@@ -1,4 +1,4 @@
-﻿namespace ASP_BrewedCoffee_v2.Models;
+﻿namespace ASP_BrewedCoffee_DB.Models;
 public class CFooterMenuM : List<Dictionary<string, Dictionary<string, string>>>
 {
     public string Title { get; set; }

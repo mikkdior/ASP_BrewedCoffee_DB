@@ -1,4 +1,4 @@
-﻿namespace ASP_BrewedCoffee.Controllers;
+﻿namespace ASP_BrewedCoffee_DB.Controllers;
 public class AdminController : Controller
 {
     public AdminController()
