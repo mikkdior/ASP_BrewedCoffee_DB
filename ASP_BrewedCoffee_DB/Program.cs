@@ -1,5 +1,10 @@
+
+
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddDbContext<CDBContext>();
+builder.Services.AddTransient<CPostsS>();
+builder.Services.AddTransient<CCategoriesS>();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
