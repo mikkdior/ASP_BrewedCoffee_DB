@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASP_BrewedCoffee_DB", "ASP_BrewedCoffee_DB\ASP_BrewedCoffee_DB.csproj", "{4BA16330-AB24-415E-B0F4-B9DDC70BCF6F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4BA16330-AB24-415E-B0F4-B9DDC70BCF6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BA16330-AB24-415E-B0F4-B9DDC70BCF6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BA16330-AB24-415E-B0F4-B9DDC70BCF6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BA16330-AB24-415E-B0F4-B9DDC70BCF6F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5425748B-3DA3-42E3-B82C-5CAC33A9F016}
+	EndGlobalSection
+EndGlobal
