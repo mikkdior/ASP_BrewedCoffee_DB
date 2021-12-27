@@ -1,0 +1,10 @@
+﻿@using ASP_BrewedCoffee.Models;
+@{ int posts_count = CConf.CountFilteredPosts; }
+<div id="content">
+    @await Html.PartialAsync("_Sketches")
+    @if (posts_count > (int)Context.Items["PostsPerPage"])
+    {
+        @await Html.PartialAsync("_Pagination")
+    }
+
+</div>

@@ -1,0 +1,53 @@
+﻿<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+@using ASP_BrewedCoffee.Models;
+@{RPostM post = Model;
+    var favorites = (List<string>)Context.Items["favorites"];
+    var likes = (List<string>)Context.Items["likes"];
+}
+<div class="post">
+    <h1 class="title">@post.Title</h1>
+    <form method="post" action="#">
+        @if (likes.IndexOf(@post.Title) >= 0)
+        {
+            <button class="btn btn-like-pressed" type="submit">
+                <span class="count-likes">@post.Likes</span>
+                <span class="btn-icon btn-icon-default btn-icon-like-pressed">
+                    <span class="fa fa-heart"></span>
+                </span>
+                <span class="btn-icon btn-icon-liked">
+                    <span class="fa fa-heart"></span>
+                </span>
+            </button>
+            <input type="hidden" name="action" value="dislike">
+        }
+        else
+        {
+            <button class="btn btn-like" type="submit">
+                <span class="btn-icon btn-icon-default">
+                    <span class="fa fa-heart"></span>
+                </span>
+                <span class="btn-icon btn-icon-liked">
+                    <span class="fa fa-heart"></span>
+                </span>
+            </button>
+            <input type="hidden" name="action" value="like">
+        }
+        <input type="hidden" name="postname" value="@post.Title">
+    </form>
+    <form method="post" action="#">
+        @if (favorites.IndexOf(@post.Title) >= 0)
+        {
+            <input class="to-favorites in-favorites" type="submit" value="favorite">
+        }
+        else
+        {
+            <input class="to-favorites" type="submit" value="to favorites">
+        }
+        <input type="hidden" name="postname" value="@post.Title">
+        <input type="hidden" name="action" value="favorite">
+    </form>
+    <p class="byline"><small>Posted on @post.Date.ToShortDateString() by @post.Author</small></p>
+    <div class="entry">
+        <p>@post.Content</p>
+    </div>
+</div>

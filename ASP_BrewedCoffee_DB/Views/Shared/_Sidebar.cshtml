@@ -1,0 +1,14 @@
+﻿@using ASP_BrewedCoffee.Models;
+<div id="sidebar">
+    <ul>
+        <li>
+            <h2><a class="favorite-sidebar" href="/favorite">Favorite posts</a></h2>
+        </li>
+        <li>
+            @await Html.PartialAsync("_SidebarMenu", new CMenuFactoryM().Create(new CBuildCategoryStrategyM(), COptions.GetValue("CatMenuTitle"), true))
+        </li>
+        <li>
+            @await Html.PartialAsync("_SidebarMenu", new CMenuFactoryM().Create(new CBuildArchiveStrategyM(), COptions.GetValue("ArchMenuTitle"), true))
+        </li>
+    </ul>
+</div>

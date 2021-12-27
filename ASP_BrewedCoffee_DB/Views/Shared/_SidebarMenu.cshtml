@@ -1,0 +1,8 @@
+﻿@using ASP_BrewedCoffee.Models;
+<h2>@Model.Title</h2>
+<ul>
+    @foreach (CMenuItemM menu_item in (CMenuM)Model)
+    {
+        <li><a href="@menu_item.Url">@menu_item.Title</a> (@menu_item.Count)</li>
+    }
+</ul>

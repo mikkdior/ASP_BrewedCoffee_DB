@@ -1,0 +1,20 @@
+﻿@using ASP_BrewedCoffee.Models;
+@{ CFooterMenuM menu = new CFooterMenuM().ParseMenu(COptions.GetValue("FooterMenuDict"), COptions.GetValue("FooterMenuTitle")); }
+<p>
+    &copy;@menu.Year @menu.Title
+    @for (int i = 0; i < menu.Count; i++)
+    {
+        @if (i < menu.Count)
+        {
+            <span>&nbsp; &bull; &nbsp;</span>
+        }
+        @foreach (var pair in menu[i])
+        {
+            @pair.Key 
+            @foreach (var pair2 in pair.Value) 
+            { 
+                <a href="@pair2.Value">@pair2.Key</a>
+            }
+        }
+    }
+</p>

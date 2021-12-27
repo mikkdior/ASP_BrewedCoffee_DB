@@ -13,7 +13,7 @@ Released   : 20090411
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <title>Brewed Coffee by Free CSS Templates</title>
+    <title>Category</title>
     <meta name="keywords" content="" />
     <meta name="description" content="" />
     <link href="/css/style.css" rel="stylesheet" type="text/css" media="screen" />
@@ -21,8 +21,7 @@ Released   : 20090411
 <body>
     @await Html.PartialAsync("_Header")
     <div id="page">
-        @RenderBody()
-        @await Html.PartialAsync("_HomeContent")
+        @await Html.PartialAsync("_Content")
         @await Html.PartialAsync("_Sidebar")
     </div>
     @await Html.PartialAsync("_Footer")

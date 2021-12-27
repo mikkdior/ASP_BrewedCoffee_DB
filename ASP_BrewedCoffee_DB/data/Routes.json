@@ -1,0 +1,10 @@
+{
+  "home": "/",
+  "admin": "/admin",
+  "favorite": "/favorite",
+  "category": "/category",
+  "archive": "/archive",
+  "api": "/api",
+  "api-category": "/api",
+  "api-filter": "/api/filter"
+}

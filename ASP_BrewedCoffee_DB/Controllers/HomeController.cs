@@ -1,32 +1,16 @@
-﻿using ASP_BrewedCoffee_DB.Models;
-using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
-
-namespace ASP_BrewedCoffee_DB.Controllers
+﻿namespace ASP_BrewedCoffee.Controllers;
+public class HomeController : Controller
 {
-    public class HomeController : Controller
+    public IActionResult Index()
     {
-        private readonly ILogger<HomeController> _logger;
+        /*int count = int.Parse(COptions.GetValue("PostsOnHome"));
+        CPostsM posts = new CPostsBuilderM().SetNum(count).Build();
+        HttpContext.Items.Add("Posts", posts);*/
 
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
-
-        public IActionResult Index()
-        {
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
+        return View();
+    }
+    public IActionResult Page404()
+    {
+        return Content("page not found");
     }
 }
