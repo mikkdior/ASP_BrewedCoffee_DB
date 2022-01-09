@@ -1,11 +1,10 @@
-﻿@{
-    ViewData["Title"] = "Category Page";
-}
-@if ((bool)Context.Items["IsAuth"])
-{
-    @await Html.PartialAsync("_AdminMain")
-}
-else
-{
-    @await Html.PartialAsync("_FormLogin")
-}       
+﻿AUTHORIZATION
+
+<ul>
+    <li>
+        <a href="/admin/categories">Categories</a>
+    </li>
+    <li>
+        <a href="/admin/posts">Posts</a>
+    </li>
+</ul>

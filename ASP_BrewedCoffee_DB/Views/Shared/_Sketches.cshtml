@@ -1,8 +1,8 @@
 ﻿@using ASP_BrewedCoffee_DB.Models;
-@{ var posts = (List<RPostM>)Context.Items["Posts"]; }
+@*@{ var posts = (List<RPostM>)Context.Items["Posts"]; }
 @if (posts.Count == 0)
 {
     <h2 class="no-posts">There is no posts in here</h2>
 }
 @foreach (RPostM post in posts)
-    @await Html.PartialAsync("_Sketch", post)
+    @await Html.PartialAsync("_Sketch", post)*@

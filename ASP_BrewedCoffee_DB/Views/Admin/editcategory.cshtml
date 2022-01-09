@@ -1,0 +1,22 @@
+﻿@model CCategory
+
+<h1>Edit category</h1>
+<form method="post" action="#">
+    <p>
+        <label>
+            <span>Title: </span>
+            <input type="text" name="Title" value="@Model.Title"/>
+        </label>
+    </p>
+    <p>
+        <label>
+            <span>Slug: </span>
+            <input type="text" name="Slug" value="@Model.Slug"/>
+        </label>
+    </p>
+    <p>
+        <label>
+            <input type="submit" value="apply"/>
+        </label>
+    </p>
+</form>

@@ -1,0 +1,41 @@
+﻿@model CPost
+
+<h1>Edit post</h1>
+<form method="post" action="#">
+    <p>
+        <label>
+            <span>Title: </span>
+            <input type="text" name="Title" value="@Model.Title"/>
+        </label>
+    </p>
+    <p>
+        <label>
+            <span>Content: </span>
+            <input type="text" name="Content" value="@Model.Content"/>
+        </label>
+    </p>
+    <p>
+        <label>
+            <span>Author: </span>
+            <input type="text" name="Author" value="@Model.Author"/>
+        </label>
+    </p>
+    <p>
+        <label>
+            <span>Category Id: </span>
+            <input type="text" name="CategoryId" value="@Model.CategoryId"/>
+        </label>
+    </p>
+    <p>
+        <label>
+            <span>Created Date: </span>
+            <input type="datetime-local" name="CreatedDate" value="@Model.CreatedDate"/>
+        </label>
+    </p>
+    <p>
+        <label>
+            <input type="submit" value="apply"/>
+        </label>
+    </p>
+</form>
+

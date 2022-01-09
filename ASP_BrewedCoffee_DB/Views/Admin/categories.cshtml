@@ -1,0 +1,14 @@
+﻿@using ASP_BrewedCoffee_DB.Models
+@model IEnumerable<CCategory>
+
+<h1>Categories</h1>
+<ul>
+    @foreach (CCategory cat in Model)
+    {
+        <li>
+            <a href="/admin/categories/category/@cat.Id">@cat.Title</a>
+        </li>
+    }
+</ul>
+<a href="/admin/categories/category">Add new</a>
+

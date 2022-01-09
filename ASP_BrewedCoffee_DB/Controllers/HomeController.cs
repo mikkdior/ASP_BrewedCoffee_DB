@@ -1,25 +1,27 @@
 ﻿namespace ASP_BrewedCoffee_DB.Controllers;
 public class HomeController : Controller
 {
+    public CPosts PostsModel;
+    public CCategories CategoriesModel;
+    public HomeController(CPosts posts, CCategories cats)
+    {
+        PostsModel = posts;
+        CategoriesModel = cats;
+    }
     public IActionResult Index()
     {
-        HttpContext.Items.Add("CategoriesMenu", new CMenuFactoryM().Create(new CBuildCategoryStrategyM(), COptions.GetValue("CatMenuTitle"), true));
-        HttpContext.Items.Add("ArchiveMenu", new CMenuFactoryM().Create(new CBuildArchiveStrategyM(), COptions.GetValue("ArchMenuTitle"), true));
-        HttpContext.Items.Add("Posts", new CPostsBuilderM().SetNum(int.Parse(COptions.GetValue("PostsOnHome"))).Build());
+        return View();
+    }
+    [Route("/{slug}")]
+    public IActionResult Category(string slug)
+    {
 
         return View();
     }
-
-    /*public IActionResult Index()
+    [Route("/archive/{month}")]
+    public IActionResult Archive(string month)
     {
-        int count = int.Parse(COptions.GetValue("PostsOnHome"));
-        CPostsM posts = new CPostsBuilderM().SetNum(count).Build();
-        HttpContext.Items.Add("Posts", posts);
 
         return View();
-    }*/
-    public IActionResult Page404()
-    {
-        return Content("page not found");
     }
 }

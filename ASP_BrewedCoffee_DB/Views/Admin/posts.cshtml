@@ -1,0 +1,13 @@
+﻿@using ASP_BrewedCoffee_DB.Models
+@model IEnumerable<CPost>
+
+<h1>Posts</h1>
+<ul>
+    @foreach (CPost post in Model)
+    {
+        <li>
+            <a href="/admin/posts/post/@post.Id">@post.Title</a>
+        </li>
+    }
+</ul>
+<a href="/admin/posts/post">Add new</a>
