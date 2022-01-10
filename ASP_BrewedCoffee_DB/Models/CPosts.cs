@@ -15,6 +15,7 @@ public class CPosts
     public CPost GetPost(int? id) => DB.Posts.Find(id);
     public void Add(CPost post)
     {
+        post.Id = DB.Posts.Count();
         DB.Posts.Add(post);
         DB.SaveChanges();
     }

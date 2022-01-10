@@ -44,12 +44,7 @@ public class AdminController : Controller
     // айди. если айди есть - форма заполняется данными во вьюшке. Если нет - приходит пустая форма для 
     // заполнения. - добавление нового поста
     [Route("/admin/posts/post/{id?}")]
-    public IActionResult EditPost(int? id)
-    {
-        CPost cat = id == null ? new CPost() : PostsModel.GetPost(id);
-
-        return View(cat);
-    }
+    public IActionResult EditPost(int? id) => View(id == null ? new CPost() : PostsModel.GetPost(id));
 
     // тут будет только после пост запроса отрабатывать этот метод. т.е. уже принимать заполненную
     // форму с новым постом, который добавится в базу данных. Если присутствует айди - 
@@ -73,12 +68,7 @@ public class AdminController : Controller
     // айди. если айди есть - форма заполняется данными во вьюшке. Если нет - приходит пустая форма для 
     // заполнения. - добавление новой категории
     [Route("/admin/categories/category/{id?}")]   
-    public IActionResult EditCategory(int? id)
-    {
-        CCategory cat = id == null ? new CCategory() : CategoriesModel.GetCat(id);
-            
-        return View(cat);
-    }
+    public IActionResult EditCategory(int? id) => View(id == null ? new CCategory() : CategoriesModel.GetCat(id));
 
     // тут будет только после пост запроса отрабатывать этот метод. т.е. уже принимать заполненную
     // форму с новой категорией, которая добавится в базу данных. Если присутствует айди - 

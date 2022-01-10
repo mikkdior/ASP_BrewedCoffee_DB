@@ -1,4 +1,7 @@
-﻿namespace ASP_BrewedCoffee_DB.Models;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace ASP_BrewedCoffee_DB.Models;
 public class CPost
 {
     public int Id { get; set; }
