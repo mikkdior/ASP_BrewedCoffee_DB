@@ -1,6 +1,22 @@
 ﻿namespace ASP_BrewedCoffee_DB.Models;
-public record CConf
+public class CConf
 {
-    public readonly string AdminLogin = "1";
-    public readonly string AdminPass = "2";
+    public enum EMonths
+    {
+        January = 1,
+        February,
+        March,
+        April,
+        May,
+        June,
+        July,
+        August,
+        September,
+        October,
+        November,
+        December
+    }
+    public static string WebRootPath;
+    public static string DbConnString = "Server=(localdb)\\mssqllocaldb;Database=coffee_v02;Trusted_Connection=True;";
+    public static CDBContext DB;
 }

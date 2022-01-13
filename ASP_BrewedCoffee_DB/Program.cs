@@ -2,10 +2,12 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddSingleton<CConf>();
+builder.Services.AddDbContext<CDBContext>();
+CConf.DB = builder.Services.BuildServiceProvider().GetService<CDBContext>();
 builder.Services.AddTransient<CPosts>();
 builder.Services.AddTransient<CCategories>();
 builder.Services.AddTransient<CAuth>();
-builder.Services.AddDbContext<CDBContext>();
+
 builder.Services.AddSession();
 
 builder.Services.AddMvc((options) => options.EnableEndpointRouting = false);

@@ -1,14 +1,14 @@
-﻿@*@using ASP_BrewedCoffee_DB.Models;
+﻿@using ASP_BrewedCoffee_DB.Models;
 <div id="sidebar">
     <ul>
         <li>
             <h2><a class="favorite-sidebar" href="/favorite">Favorite posts</a></h2>
         </li>
         <li>
-            @await Html.PartialAsync("_SidebarMenu", new CMenuFactoryM().Create(new CBuildCategoryStrategyM(), COptions.GetValue("CatMenuTitle"), true))
+            @await Html.PartialAsync("_SidebarMenu", new CMenuFactory().Create(new CBuildCategoryStrategy(), CConf.DB.GetOptionsValue("CatMenuTitle"), true))
         </li>
         <li>
-            @await Html.PartialAsync("_SidebarMenu", new CMenuFactoryM().Create(new CBuildArchiveStrategyM(), COptions.GetValue("ArchMenuTitle"), true))
+            @await Html.PartialAsync("_SidebarMenu", new CMenuFactory().Create(new CBuildArchiveStrategy(), CConf.DB.GetOptionsValue("ArchMenuTitle"), true))
         </li>
     </ul>
-</div>*@
+</div>

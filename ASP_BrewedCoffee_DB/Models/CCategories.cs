@@ -1,11 +1,7 @@
 ﻿namespace ASP_BrewedCoffee_DB.Models;
 public class CCategories
 {
-    private CDBContext DB;
-    public CCategories(CDBContext db_context)
-    {
-        DB = db_context;
-    }
+    private CDBContext DB = CConf.DB;
     public IEnumerable<CCategory>? GetCats()
     {
         return DB.Categories;

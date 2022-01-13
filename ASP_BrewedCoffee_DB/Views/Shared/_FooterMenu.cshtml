@@ -1,5 +1,5 @@
-﻿@*@using ASP_BrewedCoffee_DB.Models;
-@{ CFooterMenuM menu = new CFooterMenuM().ParseMenu(COptions.GetValue("FooterMenuDict"), COptions.GetValue("FooterMenuTitle")); }
+﻿@using ASP_BrewedCoffee_DB.Models;
+@{ CFooterMenuM menu = new CFooterMenuM().ParseMenu(CConf.DB.GetOptionsValue("FooterMenuDict"), CConf.DB.GetOptionsValue("FooterMenuTitle")); }
 <p>
     &copy;@menu.Year @menu.Title
     @for (int i = 0; i < menu.Count; i++)
@@ -17,4 +17,4 @@
             }
         }
     }
-</p>*@
+</p>

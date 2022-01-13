@@ -1,9 +1,7 @@
 ﻿namespace ASP_BrewedCoffee_DB.Models;
 public class CPosts
 {
-    public CDBContext DB;
-
-    public CPosts(CDBContext db_context) { DB = db_context; }
+    public CDBContext DB = CConf.DB;
     public IEnumerable<CPost>? GetPosts(int? cat_id = null) => cat_id == null ?
         DB.Posts : from post in DB.Posts
                         where post.CategoryId == cat_id

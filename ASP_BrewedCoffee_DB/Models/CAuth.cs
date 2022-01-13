@@ -3,7 +3,7 @@ public record RAuthData(string Login, string Pass);
 public class CAuth
 {
     public RAuthData AuthData;
-    public CAuth(CConf conf) => AuthData = new RAuthData(conf.AdminLogin, conf.AdminPass);
+    public CAuth() => AuthData = new RAuthData(CConf.DB.GetOptionsValue("AdminLogin"), CConf.DB.GetOptionsValue("AdminPass"));
     public bool CheckAuth(HttpContext context) => context.Request.Cookies["is_auth"] == "true";
     public bool Authorization(HttpContext context, RAuthData input_data) 
     {
