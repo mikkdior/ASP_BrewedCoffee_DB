@@ -1,13 +1,26 @@
 ﻿@using ASP_BrewedCoffee_DB.Models
 @model IEnumerable<CPost>
-
+@{
+    ViewData["Title"] = "Admin Posts Page";
+}
+<ul>
+    <li>
+        <a href="/admin/categories"> Show Categories</a>
+    </li>
+    <li>
+        <a href="/admin/posts">Show Posts</a>
+    </li>
+</ul>
 <h1>Posts</h1>
 <ul>
     @foreach (CPost post in Model)
     {
         <li>
+            <span>@post.Id - </span>
             <a href="/admin/posts/post/@post.Id">@post.Title</a>
+            <span>   by @post.Author</span>
         </li>
     }
 </ul>
 <a href="/admin/posts/post">Add new</a>
+<a href='/admin/logout'><input type="button" value="Log Out"></a>

@@ -19,9 +19,9 @@ public class CPosts
         DB.Posts.Add(post);
         DB.SaveChanges();
     }
-    public void Edit(CPost post)
+    public void Edit(CPost post, int id)
     {
-        var post_ = DB.Posts.Find(post.Id);
+        var post_ = DB.Posts.Find(id);
         post_.Title = post.Title;
         post_.CategoryId = post.CategoryId;
         post_.Author = post.Author;

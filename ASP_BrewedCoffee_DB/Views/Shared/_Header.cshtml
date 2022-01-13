@@ -1,4 +1,5 @@
-﻿@*@using ASP_BrewedCoffee_DB.Models;
+﻿@using ASP_BrewedCoffee_DB.Models;
+@inject CDBContext DB;
 <div id="header">
-    <h1><a href="/">@COptions.GetValue("MainTitle")</a></h1>
-</div>*@
+    <h1><a href="/">@DB.GetOptionsValue("MainTitle")</a></h1>
+</div>

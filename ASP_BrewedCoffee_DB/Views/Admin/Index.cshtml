@@ -1,10 +1,5 @@
-﻿AUTHORIZATION
-
-<ul>
-    <li>
-        <a href="/admin/categories">Categories</a>
-    </li>
-    <li>
-        <a href="/admin/posts">Posts</a>
-    </li>
-</ul>
+﻿@{
+    ViewData["Title"] = "Admin Main Page";
+}
+<h1>Please sign in as administrator</h1>
+@await Html.PartialAsync("_FormLogin")

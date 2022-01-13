@@ -6,11 +6,9 @@ builder.Services.AddTransient<CPosts>();
 builder.Services.AddTransient<CCategories>();
 builder.Services.AddTransient<CAuth>();
 builder.Services.AddDbContext<CDBContext>();
+builder.Services.AddSession();
 
-builder.Services.AddMvc((options) =>
-{
-    options.EnableEndpointRouting = false;
-});
+builder.Services.AddMvc((options) => options.EnableEndpointRouting = false);
 
 var app = builder.Build();
 
@@ -21,6 +19,8 @@ var app = builder.Build();
     app.UseExceptionHandler("/Home/Error");
     app.UseHsts();
 }*/
+app.UseSession();
+
 app.UseMvc();
 app.UseMvcWithDefaultRoute();
 

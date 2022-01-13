@@ -15,9 +15,9 @@ public class CCategories
         DB.Categories.Add(cat);
         DB.SaveChanges();
     }
-    public void Edit(CCategory cat)
+    public void Edit(CCategory cat, int id)
     {
-        var category = DB.Categories.Find(cat.Id);
+        var category = DB.Categories.Find(id);
         category.Title = cat.Title;
         category.Slug = cat.Slug;
         DB.SaveChanges();
