@@ -5,6 +5,7 @@ public class CMenuItem
     public int Id { get; set; }
     public string Title { get; set; }
     public string Url { get; set; }
+    public string Slug { get; set; }
     public int Count { get; set; }
 }
 public class CMenu : List<CMenuItem>
@@ -30,7 +31,8 @@ public class CBuildCategoryStrategy : IBuildMenuStrategy
             { 
                 Id = cat.Id, 
                 Title = cat.Title, 
-                Url = $"/{m_title}/{cat.Slug}" 
+                Url = $"/{m_title}/{cat.Slug}",
+                Slug = cat.Slug
             };
             if (show_count) m_item.Count = GetCount(m_item, CConf.DB.Posts);
             menu.Add(m_item);
@@ -38,7 +40,7 @@ public class CBuildCategoryStrategy : IBuildMenuStrategy
         
         return menu;
     }
-    public int GetCount(CMenuItem menu_item, DbSet<CPost> posts) =>
+    public int GetCount(CMenuItem menu_item, IEnumerable<CPost> posts) =>
         (from post in posts where post.CategoryId == menu_item.Id select post).Count();
 }
 public class CBuildArchiveStrategy : IBuildMenuStrategy
@@ -48,18 +50,18 @@ public class CBuildArchiveStrategy : IBuildMenuStrategy
         string m_title = menu_title.ToLower();
         var menu = new CMenu()
         {
-            new CMenuItem(){ Title = "January", Url = $"/{m_title}/jan" },
-            new CMenuItem(){ Title = "February", Url = $"/{m_title}/feb" },
-            new CMenuItem(){ Title = "March", Url = $"/{m_title}/mar" },
-            new CMenuItem(){ Title = "April", Url = $"/{m_title}/apr" },
-            new CMenuItem(){ Title = "May", Url = $"/{m_title}/may" },
-            new CMenuItem(){ Title = "June", Url = $"/{m_title}/jun" },
-            new CMenuItem(){ Title = "July", Url = $"/{m_title}/jul" },
-            new CMenuItem(){ Title = "August", Url = $"/{m_title}/aug" },
-            new CMenuItem(){ Title = "September", Url = $"/{m_title}/sep" },
-            new CMenuItem(){ Title = "October", Url = $"/{m_title}/oct" },
-            new CMenuItem(){ Title = "November", Url = $"/{m_title}/nov" },
-            new CMenuItem(){ Title = "December", Url = $"/{m_title}/dec" },
+            new CMenuItem(){ Title = "January", Url = $"/{m_title}/jan", Slug = "jan" },
+            new CMenuItem(){ Title = "February", Url = $"/{m_title}/feb", Slug = "feb" },
+            new CMenuItem(){ Title = "March", Url = $"/{m_title}/mar", Slug = "mar" },
+            new CMenuItem(){ Title = "April", Url = $"/{m_title}/apr", Slug = "apr" },
+            new CMenuItem(){ Title = "May", Url = $"/{m_title}/may", Slug = "may" },
+            new CMenuItem(){ Title = "June", Url = $"/{m_title}/jun", Slug = "jun" },
+            new CMenuItem(){ Title = "July", Url = $"/{m_title}/jul", Slug = "jul" },
+            new CMenuItem(){ Title = "August", Url = $"/{m_title}/aug", Slug = "aug" },
+            new CMenuItem(){ Title = "September", Url = $"/{m_title}/sep", Slug = "sep" },
+            new CMenuItem(){ Title = "October", Url = $"/{m_title}/oct", Slug = "oct" },
+            new CMenuItem(){ Title = "November", Url = $"/{m_title}/nov", Slug = "nov" },
+            new CMenuItem(){ Title = "December", Url = $"/{m_title}/dec", Slug = "dec" },
         };
 
         menu.Title = menu_title;
@@ -70,15 +72,8 @@ public class CBuildArchiveStrategy : IBuildMenuStrategy
         return menu;
     }
 
-    public int GetCount(CMenuItem menu_item, DbSet<CPost> posts) => 5;
-    /*{
-        return CFilesM.Instance.GetCount(CConf.PostsDataPath, new CFilterOptionsBuilderM().AddFilter((table_line) =>
-        {
-            int curr_month_num = CHelperM.ParseDate(table_line["Date"]).Month;
-            string curr_month_name = ((CConf.EMonths)curr_month_num).ToString();
-
-            if (curr_month_name == menu_item.Title) return true;
-            return false;
-        }).Build());
-    }*/
+    public int GetCount(CMenuItem menu_item, IEnumerable<CPost> posts) => 
+        (from post in posts
+        where ((CConf.EMonths)post.CreatedDate.Month).ToString() == menu_item.Title 
+        select post).Count();
 }

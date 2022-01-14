@@ -1,8 +1,14 @@
-﻿@*@using ASP_BrewedCoffee_DB.Models;
+﻿@using ASP_BrewedCoffee_DB.Models;
+@model CMenu
 <h2>@Model.Title</h2>
 <ul>
-    @foreach (CMenuItemM menu_item in (CMenuM)Model)
+    @foreach (CMenuItem menu_item in Model)
     {
-        <li><a href="@menu_item.Url">@menu_item.Title</a> (@menu_item.Count)</li>
+        <li><a href="@menu_item.Url">@menu_item.Title</a> 
+            @if (Model.ShowCount)
+            {
+                <span>(@menu_item.Count)</span>
+            }
+        </li>
     }
-</ul>*@
+</ul>

@@ -5,10 +5,10 @@
             <h2><a class="favorite-sidebar" href="/favorite">Favorite posts</a></h2>
         </li>
         <li>
-            @await Html.PartialAsync("_SidebarMenu", new CMenuFactory().Create(new CBuildCategoryStrategy(), CConf.DB.GetOptionsValue("CatMenuTitle"), true))
+            @await Html.PartialAsync("_SidebarMenu", ViewData["CategoriesMenu"])
         </li>
         <li>
-            @await Html.PartialAsync("_SidebarMenu", new CMenuFactory().Create(new CBuildArchiveStrategy(), CConf.DB.GetOptionsValue("ArchMenuTitle"), true))
+            @await Html.PartialAsync("_SidebarMenu", ViewData["ArchiveMenu"])
         </li>
     </ul>
 </div>
