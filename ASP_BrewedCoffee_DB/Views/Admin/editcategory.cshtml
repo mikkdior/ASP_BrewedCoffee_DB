@@ -1,22 +1,30 @@
 ﻿@model CCategory
-
-<h1>Edit category</h1>
-<form method="post" action="#">
-    <p>
-        <label>
-            <span>Title: </span>
-            <input type="text" name="Title" value="@Model.Title"/>
-        </label>
-    </p>
-    <p>
-        <label>
-            <span>Slug: </span>
-            <input type="text" name="Slug" value="@Model.Slug"/>
-        </label>
-    </p>
-    <p>
-        <label>
-            <input type="submit" value="apply"/>
-        </label>
-    </p>
-</form>
+<div class="admin-content">
+    <h1>Edit category</h1>
+    <form method="post" action="#">
+        <p>
+            <label>
+                <span>Title: </span>
+                <input type="text" name="Title" value="@Model.Title"/>
+            </label>
+        </p>
+        <p>
+            <label>
+                <span>Slug: </span>
+                <input type="text" name="Slug" value="@Model.Slug"/>
+            </label>
+        </p>
+        <p>
+            <label>
+               <input type="submit" name="action" value="Update" />
+            </label>
+        </p>
+        <p>
+            <label>
+                <input type="submit" name="action" value="Delete" />
+            </label>
+        </p>
+    </form>
+    <a href='/admin/categories'><input type="button" value="Cancel"></a>
+    <a href='/admin/logout'><input type="button" value="Log Out"></a>
+<div/>

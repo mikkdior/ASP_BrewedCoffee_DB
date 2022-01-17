@@ -3,24 +3,26 @@
 @{
     ViewData["Title"] = "Admin Posts Page";
 }
-<ul>
-    <li>
-        <a href="/admin/categories"> Show Categories</a>
-    </li>
-    <li>
-        <a href="/admin/posts">Show Posts</a>
-    </li>
-</ul>
-<h1>Posts</h1>
-<ul>
-    @foreach (CPost post in Model)
-    {
+<div class="admin-content">
+    <ul>
         <li>
-            <span>@post.Id - </span>
-            <a href="/admin/posts/post/@post.Id">@post.Title</a>
-            <span>   by @post.Author</span>
+            <a href="/admin/categories"> Show Categories</a>
         </li>
-    }
-</ul>
-<a href="/admin/posts/post">Add new</a>
-<a href='/admin/logout'><input type="button" value="Log Out"></a>
+        <li>
+            <a href="/admin/posts">Show Posts</a>
+        </li>
+    </ul>
+    <h1>Posts</h1>
+    <ul>
+        @foreach (CPost post in Model)
+        {
+            <li>
+                <span>@post.Id - </span>
+                <a class="admin-list-item" href="/admin/posts/post/@post.Id">@post.Title</a>
+                <span>   by @post.Author</span>
+            </li>
+        }
+    </ul>
+    <a href="/admin/posts/post">Add new</a>
+    <a href='/admin/logout'><input type="button" value="Log Out"></a>
+</div>

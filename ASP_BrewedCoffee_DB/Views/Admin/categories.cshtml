@@ -1,23 +1,25 @@
 ﻿@using ASP_BrewedCoffee_DB.Models
 @model IEnumerable<CCategory>
-<ul>
-    <li>
-        <a href="/admin/categories"> Show Categories</a>
-    </li>
-    <li>
-        <a href="/admin/posts">Show Posts</a>
-    </li>
-</ul>
-<h1>Categories</h1>
-<ul>
-    @foreach (CCategory cat in Model)
-    {
+<div class="admin-content">
+    <ul>
         <li>
-            <span>@cat.Id - </span>
-            <a href="/admin/categories/category/@cat.Id">@cat.Title</a>
+            <a href="/admin/categories"> Show Categories</a>
         </li>
-    }
-</ul>
-<a href="/admin/categories/category">Add new</a>
-<a href='/admin/logout'><input type="button" value="Log Out"></a>
+        <li>
+            <a href="/admin/posts">Show Posts</a>
+        </li>
+    </ul>
+    <h1>Categories</h1>
+    <ul>
+        @foreach (CCategory cat in Model)
+        {
+            <li>
+                <span>@cat.Id - </span>
+                <a class="admin-list-item" href="/admin/categories/category/@cat.Id">@cat.Title</a>
+            </li>
+        }
+    </ul>
+    <a href="/admin/categories/category">Add new</a>
+    <a href='/admin/logout'><input type="button" value="Log Out"></a>
+</div>>
 

@@ -1,11 +1,8 @@
 ﻿namespace ASP_BrewedCoffee_DB.Models;
-public class CCategories
+public class CCategoriesService
 {
-    private CDBContext DB = CConf.DB;
-    public IEnumerable<CCategory>? GetCats()
-    {
-        return DB.Categories;
-    }
+    private CDBContext DB = CConfService.DB;
+    public IEnumerable<CCategory>? GetCats() => DB.Categories;
     public void Add(CCategory cat)
     {
         DB.Categories.Add(cat);

@@ -25,7 +25,7 @@ public class CBuildCategoryStrategy : IBuildMenuStrategy
         var menu = new CMenu() { Title = menu_title, ShowCount = show_count };
         string m_title = menu_title.ToLower();
 
-        foreach (CCategory cat in CConf.DB.Categories)
+        foreach (CCategory cat in CConfService.DB.Categories)
         {
             var m_item = new CMenuItem() 
             { 
@@ -34,14 +34,20 @@ public class CBuildCategoryStrategy : IBuildMenuStrategy
                 Url = $"/{m_title}/{cat.Slug}",
                 Slug = cat.Slug
             };
-            if (show_count) m_item.Count = GetCount(m_item, CConf.DB.Posts);
+            //if (show_count) m_item.Count = GetCount(m_item, CConfService.DB.Posts);
             menu.Add(m_item);
         }
         
         return menu;
     }
-    public int GetCount(CMenuItem menu_item, IEnumerable<CPost> posts) =>
-        (from post in posts where post.CategoryId == menu_item.Id select post).Count();
+    public int GetCount(CMenuItem menu_item, IEnumerable<CPost> posts) 
+    {
+        IEnumerable<CPost> psts = from post in posts
+                                  where post.CategoryId == menu_item.Id
+                                  select post;
+        return psts.Count();
+    }
+        
 }
 public class CBuildArchiveStrategy : IBuildMenuStrategy
 {
@@ -67,13 +73,13 @@ public class CBuildArchiveStrategy : IBuildMenuStrategy
         menu.Title = menu_title;
         menu.ShowCount = show_count;
 
-        if (show_count) foreach (CMenuItem item in menu) item.Count = GetCount(item, CConf.DB.Posts);
+        //if (show_count) foreach (CMenuItem item in menu) item.Count = GetCount(item, CConfService.DB.Posts);
 
         return menu;
     }
 
     public int GetCount(CMenuItem menu_item, IEnumerable<CPost> posts) => 
         (from post in posts
-        where ((CConf.EMonths)post.CreatedDate.Month).ToString() == menu_item.Title 
+        where ((CConfService.EMonths)post.CreatedDate.Month).ToString() == menu_item.Title 
         select post).Count();
 }

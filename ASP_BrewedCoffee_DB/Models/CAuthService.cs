@@ -1,9 +1,9 @@
 ﻿namespace ASP_BrewedCoffee_DB.Models;
 public record RAuthData(string Login, string Pass);
-public class CAuth
+public class CAuthService
 {
     public RAuthData AuthData;
-    public CAuth() => AuthData = new RAuthData(CConf.DB.GetOptionsValue("AdminLogin"), CConf.DB.GetOptionsValue("AdminPass"));
+    public CAuthService() => AuthData = new RAuthData(CConfService.DB.GetOptionsValue("AdminLogin"), CConfService.DB.GetOptionsValue("AdminPass"));
     public bool CheckAuth(HttpContext context) => context.Request.Cookies["is_auth"] == "true";
     public bool Authorization(HttpContext context, RAuthData input_data) 
     {

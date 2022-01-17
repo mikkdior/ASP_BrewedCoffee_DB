@@ -1,5 +1,5 @@
 ﻿namespace ASP_BrewedCoffee_DB.Models;
-public class CConf
+public class CConfService
 {
     public enum EMonths
     {

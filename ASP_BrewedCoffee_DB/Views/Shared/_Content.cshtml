@@ -1,7 +1,7 @@
 ﻿@using ASP_BrewedCoffee_DB.Models;
 @{ 
-    int posts_count = int.Parse(CConf.DB.GetOptionsValue("CountFilteredPosts"));
-    int posts_per_page = int.Parse(CConf.DB.GetOptionsValue("PostsPerPage"));
+    int posts_count = int.Parse(CConfService.DB.GetOptionsValue("CountFilteredPosts"));
+    int posts_per_page = int.Parse(CConfService.DB.GetOptionsValue("PostsPerPage"));
 }
 <div id="content">
     @await Html.PartialAsync("_Sketches")

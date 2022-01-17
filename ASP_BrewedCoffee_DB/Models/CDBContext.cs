@@ -3,10 +3,11 @@
 namespace ASP_BrewedCoffee_DB.Models;
 public class CDBContext : DbContext
 {
+    private string ConnString = CConfService.DbConnString;
     public DbSet<CPost>? Posts { get; set; }
     public DbSet<CCategory>? Categories { get; set; }
     public DbSet<COption>? Options { get; set; }
-    private string ConnString = CConf.DbConnString;
+    public DbSet<CRoute>? Routes { get; set; }
 
     public CDBContext(DbContextOptions options): base(options)
     {

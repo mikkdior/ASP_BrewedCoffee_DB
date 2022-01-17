@@ -1,19 +1,22 @@
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddSingleton<CConf>();
+builder.Services.AddSingleton<CConfService>();
 builder.Services.AddDbContext<CDBContext>();
-CConf.DB = builder.Services.BuildServiceProvider().GetService<CDBContext>();
-builder.Services.AddTransient<CPosts>();
-builder.Services.AddTransient<CCategories>();
-builder.Services.AddTransient<CAuth>();
-
+builder.Services.AddTransient<CRouteService>();
+CConfService.DB = builder.Services.BuildServiceProvider().GetService<CDBContext>();
+CRouteService routes_service = builder.Services.BuildServiceProvider().GetService<CRouteService>();
+builder.Services.AddTransient<CPostsService>();
+builder.Services.AddTransient<CCategoriesService>();
+builder.Services.AddTransient<CAuthService>();
+//--------------------------------------------------
 builder.Services.AddSession();
-
 builder.Services.AddMvc((options) => options.EnableEndpointRouting = false);
 
+//--------------------------------------------------
 var app = builder.Build();
 
+Console.WriteLine(app.Environment.WebRootPath);
 // Configure the HTTP request pipeline.
 
 /*if (!app.Environment.IsDevelopment())
@@ -21,6 +24,8 @@ var app = builder.Build();
     app.UseExceptionHandler("/Home/Error");
     app.UseHsts();
 }*/
+//--------------------------------------------------
+routes_service.SetRoutes(app);
 app.UseSession();
 
 app.UseMvc();

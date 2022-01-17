@@ -5,10 +5,10 @@
             <h2><a class="favorite-sidebar" href="/favorite">Favorite posts</a></h2>
         </li>
         <li>
-            @await Html.PartialAsync("_SidebarMenu", ViewData["CategoriesMenu"])
+            @await Html.PartialAsync("_SidebarMenu", Context.Items["CategoriesMenu"])
         </li>
         <li>
-            @await Html.PartialAsync("_SidebarMenu", ViewData["ArchiveMenu"])
+            @await Html.PartialAsync("_SidebarMenu", Context.Items["ArchiveMenu"])
         </li>
     </ul>
 </div>

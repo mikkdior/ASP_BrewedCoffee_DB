@@ -18,12 +18,10 @@ Released   : 20090411
     <meta name="description" content="" />
     <link href="/css/style.css" rel="stylesheet" type="text/css" media="screen" />
 </head>
+
 <body>
     @await Html.PartialAsync("_Header")
-    <div id="page">
-        @RenderBody()
-        @await Html.PartialAsync("_Sidebar")
-    </div>
+    <div id="page">@RenderBody()</div>
     @await Html.PartialAsync("_Footer")
 </body>
 </html>

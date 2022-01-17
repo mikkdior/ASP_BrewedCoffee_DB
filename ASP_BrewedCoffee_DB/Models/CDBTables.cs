@@ -20,3 +20,13 @@ public class COption
     public string Key { get; set; }
     public string Value { get; set; }
 }
+public class CRoute
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public string Template { get; set; }
+    public string? Controller { get; set; }
+    public string? Action { get; set; }
+    /*public string Controller { get => Controller; set { Controller = value == "" ? "Home" : value; } }
+    public string Action { get => Action; set { Action = value == "" ? "Index" : value; } }*/
+}

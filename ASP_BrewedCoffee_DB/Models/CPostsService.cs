@@ -1,7 +1,7 @@
 ﻿namespace ASP_BrewedCoffee_DB.Models;
-public class CPosts
+public class CPostsService
 {
-    public CDBContext DB = CConf.DB;
+    public CDBContext DB = CConfService.DB;
     public IEnumerable<CPost>? GetPosts(int? cat_id = null) => cat_id == null ?
         DB.Posts : from post in DB.Posts
                         where post.CategoryId == cat_id
@@ -13,7 +13,7 @@ public class CPosts
     public CPost GetPost(int? id) => DB.Posts.Find(id);
     public void Add(CPost post)
     {
-        post.Id = DB.Posts.Count();
+        post.Id = DB.Posts.Count();  //    !!!!!!!!!!!!!!
         DB.Posts.Add(post);
         DB.SaveChanges();
     }
@@ -25,6 +25,11 @@ public class CPosts
         post_.Author = post.Author;
         post_.Content = post.Content;
         post_.CreatedDate = post.CreatedDate;
+        DB.SaveChanges();
+    }
+    public void DeletePost(int id)
+    {
+        DB.Posts.Remove(DB.Posts.Find(id));
         DB.SaveChanges();
     }
 }

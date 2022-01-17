@@ -100,11 +100,21 @@ hr {
 	margin: 0 auto;
 }
 
+
 /* Content */
 
 #content {
 	float: right;
 	width: 560px;
+	margin-top: -100px;
+	margin-bottom: 30px;
+	padding: 30px 20px;
+	background: #EBEBEB;
+	border: 10px solid #FFFFFF;
+}
+.admin-content {
+	float: right;
+	width: 839px;
 	margin-top: -100px;
 	margin-bottom: 30px;
 	padding: 30px 20px;
@@ -528,4 +538,8 @@ hr {
 .liked .btn-icon-liked {
 	opacity: 1;
 	left: 1.5rem;
+}
+.admin-list-item{
+	font-style: italic;
+	font-size: 20px;
 }
