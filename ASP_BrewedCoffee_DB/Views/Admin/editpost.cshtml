@@ -1,4 +1,7 @@
 ﻿@model CPost
+@{
+    ViewData["Title"] = "Admin Edit Post Page";
+}
 <div class="admin-content">
     <h1>Edit post</h1>
     <form method="post" action="#">
@@ -20,28 +23,70 @@
                 <input type="text" name="Author" value="@Model.Author"/>
             </label>
         </p>
-        <p>
-            <label>
-                <span>Category Id: </span>
-                <input type="text" name="CategoryId" value="@Model.CategoryId"/>
-            </label>
-        </p>
-        <p>
-            <label>
-                <span>Created Date: </span>
-                <input type="datetime-local" name="CreatedDate" value="@Model.CreatedDate.ToString("s")"/>
-            </label>
-        </p>
-        <p>
-            <label>
-                <input type="submit" name="action" value="Update" />
-            </label>
-        </p>
-        <p>
-            <label>
-                <input type="submit" name="action" value="Delete" />
-            </label>
-        </p>
+        
+        @if(Model.Title != default)
+        {
+            <p>
+                <label>
+                    <span>Category: </span>
+                    <select name="CategoryID" id="cats" >
+                        @foreach(CCategory cat in CConfService.DB.Categories)
+                        {
+                            if (cat.Id == Model.CategoryId)
+                            {
+                                <option value="@cat.Id" selected="selected">@cat.Title</option>
+                            }
+                            else
+                            {
+                                 <option value="@cat.Id">@cat.Title</option>
+                            }
+                        }
+                    </select>
+                </label>
+            </p>
+            <p>
+                <label>
+                    <span>Created Date: </span>
+                    <input type="datetime-local" name="CreatedDate" value="@Model.CreatedDate.ToString("s")"/>
+                </label>
+            </p>
+            <p>
+                <label>
+                    <input type="submit" name="action" value="Update" />
+                </label>
+            </p>
+            <p>
+                <label>
+                    <input type="submit" name="action" value="Delete" />
+                </label>
+            </p>
+        }
+        else
+        {
+            <p>
+                <label>
+                    <span>Category: </span>
+                    <select name="CategoryID" id="cats" >
+                        <option value="" selected disabled hidden></option>
+                        @foreach(CCategory cat in CConfService.DB.Categories)
+                        {
+                            <option value="@cat.Id">@cat.Title</option>
+                        }
+                    </select>
+                </label>
+            </p>
+            <p>
+                <label>
+                    <span>Created Date: </span>
+                    <input type="datetime-local" name="CreatedDate" value="@DateTime.Now.ToString("s")"/>
+                </label>
+            </p>
+            <p>
+                <label>
+                    <input type="submit" name="action" value="Create" />
+                </label>
+            </p>
+        }
     </form>
     <a href='/admin/posts'><input type="button" value="Cancel"></a>
     <a href='/admin/logout'><input type="button" value="Log Out"></a>

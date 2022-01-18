@@ -21,4 +21,9 @@ public static class CHelper
             new DateTime(year, month, max_days) //max
         };
     }
+    public static DateTime ParseDate(string date)
+    {
+        string[] parsed = date.Split('.');
+        return new DateTime(int.Parse(parsed[2]), int.Parse(parsed[1]), int.Parse(parsed[0]));
+    }
 }

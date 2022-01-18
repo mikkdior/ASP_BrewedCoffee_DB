@@ -1,4 +1,7 @@
 ﻿@model CCategory
+@{
+    ViewData["Title"] = "Admin Categories Page";
+}
 <div class="admin-content">
     <h1>Edit category</h1>
     <form method="post" action="#">
@@ -14,16 +17,27 @@
                 <input type="text" name="Slug" value="@Model.Slug"/>
             </label>
         </p>
-        <p>
-            <label>
-               <input type="submit" name="action" value="Update" />
-            </label>
-        </p>
-        <p>
-            <label>
-                <input type="submit" name="action" value="Delete" />
-            </label>
-        </p>
+        @if(Model.Title != default)
+        {
+            <p>
+                <label>
+                    <input type="submit" name="action" value="Update" />
+                </label>
+            </p>
+            <p>
+                <label>
+                    <input type="submit" name="action" value="Delete" />
+                </label>
+            </p>
+        }
+        else
+        {
+            <p>
+                <label>
+                    <input type="submit" name="action" value="Create" />
+                </label>
+            </p>
+        }
     </form>
     <a href='/admin/categories'><input type="button" value="Cancel"></a>
     <a href='/admin/logout'><input type="button" value="Log Out"></a>

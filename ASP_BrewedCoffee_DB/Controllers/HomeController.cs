@@ -61,5 +61,20 @@ public class HomeController : Controller
 
         return View();
     }
+    public IActionResult Favorites(int page = 1)
+    {
+        int num = int.Parse(DB.GetOptionsValue("PostsPerPage"));
+        var names = (List<string>)HttpContext.Items["favorites"];
+        IEnumerable<CPost> posts = new List<CPost>();
+        posts = DB.Posts
+            .OrderBy(post => post.CreatedDate)
+            .Where(post => names.Contains(post.Title))
+            .Skip((--page) * num)
+            .Take(num);
+
+        HttpContext.Items.Add("Posts", posts);
+
+        return View();
+    }
     public IActionResult Page404() => View();
 }

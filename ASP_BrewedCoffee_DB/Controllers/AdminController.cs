@@ -45,13 +45,13 @@ public class AdminController : Controller
     [HttpPost]
     public IActionResult EditPost(CPost post, int? id)
     {
-        if (!IsAdmin()) Redirect("/admin");
+        if (!IsAdmin()) return Redirect("/admin");
         if (id == null) PostsModel.Add(post);
-        if (HttpContext.Request.Form["action"] == "Delete") PostsModel.DeletePost(id.Value);
+        else if (HttpContext.Request.Form["action"] == "Delete")
+            PostsModel.DeletePost(id.Value);
         else PostsModel.Edit(post, id.Value);
-        Redirect("/admin/posts");
 
-        return View(post);
+        return Redirect("/admin/posts");
     }
 
     // тут пользователь идет по пути с возможностью добавления
@@ -65,10 +65,12 @@ public class AdminController : Controller
     [HttpPost]
     public IActionResult EditCategory(CCategory category, int? id)
     {
-        if (!IsAdmin()) Redirect("/admin");
+        if (!IsAdmin()) return Redirect("/admin");
         if (id == null) CategoriesModel.Add(category);
+        else if (HttpContext.Request.Form["action"] == "Delete")
+            CategoriesModel.DeleteCat(id.Value);
         else CategoriesModel.Edit(category, id.Value);
 
-        return View(category);
+        return Redirect("/admin/categories");;
     }
 }

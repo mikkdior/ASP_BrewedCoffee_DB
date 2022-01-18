@@ -34,20 +34,16 @@ public class CBuildCategoryStrategy : IBuildMenuStrategy
                 Url = $"/{m_title}/{cat.Slug}",
                 Slug = cat.Slug
             };
-            //if (show_count) m_item.Count = GetCount(m_item, CConfService.DB.Posts);
             menu.Add(m_item);
         }
+        if (show_count) foreach (CMenuItem item in menu) item.Count = GetCount(item, CConfService.DB.Posts);
         
         return menu;
     }
     public int GetCount(CMenuItem menu_item, IEnumerable<CPost> posts) 
-    {
-        IEnumerable<CPost> psts = from post in posts
-                                  where post.CategoryId == menu_item.Id
-                                  select post;
-        return psts.Count();
-    }
-        
+        =>(from post in posts
+        where post.CategoryId == menu_item.Id
+        select post).Count();
 }
 public class CBuildArchiveStrategy : IBuildMenuStrategy
 {
@@ -73,7 +69,7 @@ public class CBuildArchiveStrategy : IBuildMenuStrategy
         menu.Title = menu_title;
         menu.ShowCount = show_count;
 
-        //if (show_count) foreach (CMenuItem item in menu) item.Count = GetCount(item, CConfService.DB.Posts);
+        if (show_count) foreach (CMenuItem item in menu) item.Count = GetCount(item, CConfService.DB.Posts);
 
         return menu;
     }

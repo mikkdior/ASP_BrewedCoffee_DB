@@ -15,6 +15,11 @@ public class CCategoriesService
         category.Slug = cat.Slug;
         DB.SaveChanges();
     }
+    public void DeleteCat(int id)
+    {
+        DB.Categories.Remove(DB.Categories.Find(id));
+        DB.SaveChanges();
+    }
     public CCategory GetCat(int? id) => DB.Categories.Find(id);
     public static string GetCatName(IEnumerable<CCategory> cats, int id)
     {
