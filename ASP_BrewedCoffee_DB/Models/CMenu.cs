@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-namespace ASP_BrewedCoffee_DB.Models;
+﻿namespace ASP_BrewedCoffee_DB.Models;
 public class CMenuItem
 {
     public int Id { get; set; }
@@ -40,8 +39,8 @@ public class CBuildCategoryStrategy : IBuildMenuStrategy
         
         return menu;
     }
-    public int GetCount(CMenuItem menu_item, IEnumerable<CPost> posts) 
-        =>(from post in posts
+    public int GetCount(CMenuItem menu_item, IEnumerable<CPost> posts) =>
+        (from post in posts
         where post.CategoryId == menu_item.Id
         select post).Count();
 }
@@ -52,6 +51,7 @@ public class CBuildArchiveStrategy : IBuildMenuStrategy
         string m_title = menu_title.ToLower();
         var menu = new CMenu()
         {
+            new CMenuItem(){ Title = "Old", Url = $"/{m_title}/old", Slug = "old" },
             new CMenuItem(){ Title = "January", Url = $"/{m_title}/jan", Slug = "jan" },
             new CMenuItem(){ Title = "February", Url = $"/{m_title}/feb", Slug = "feb" },
             new CMenuItem(){ Title = "March", Url = $"/{m_title}/mar", Slug = "mar" },
@@ -69,13 +69,18 @@ public class CBuildArchiveStrategy : IBuildMenuStrategy
         menu.Title = menu_title;
         menu.ShowCount = show_count;
 
-        if (show_count) foreach (CMenuItem item in menu) item.Count = GetCount(item, CConfService.DB.Posts);
+        foreach (CMenuItem item in menu) item.Count = (item.Title == "Old") ? 
+                GetOldsCount(CConfService.DB.Posts) : GetCount(item, CConfService.DB.Posts);
 
         return menu;
     }
-
     public int GetCount(CMenuItem menu_item, IEnumerable<CPost> posts) => 
         (from post in posts
+        where post.CreatedDate.Year == DateTime.Now.Year
         where ((CConfService.EMonths)post.CreatedDate.Month).ToString() == menu_item.Title 
         select post).Count();
+    public int GetOldsCount(IEnumerable<CPost> posts) =>
+        (from post in posts
+         where post.CreatedDate.Year < DateTime.Now.Year
+         select post).Count();
 }

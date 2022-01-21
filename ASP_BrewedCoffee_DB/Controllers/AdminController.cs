@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 
 namespace ASP_BrewedCoffee_DB.Controllers;
 public class AdminController : Controller
@@ -6,7 +7,6 @@ public class AdminController : Controller
     public CPostsService PostsModel;
     public CCategoriesService CategoriesModel;
     public CAuthService AuthModel;
-
     public AdminController(CAuthService auth, CCategoriesService cats, CPostsService posts)
     {
         AuthModel = auth;
@@ -19,10 +19,10 @@ public class AdminController : Controller
     public IActionResult Index() => IsAdmin() ? Redirect("/admin/posts") : View();
     // auth admin control post request
     [HttpPost]
-    public IActionResult Index(RAuthData data) => AuthModel.Authorization(HttpContext, data) ? Redirect("/admin/posts") : View();
+    public IActionResult Index(RAdminData data) => AuthModel.Authorization(HttpContext, data) ? Redirect("/admin/posts") : View();
     public IActionResult LogOut() 
     {
-        HttpContext.Response.Cookies.Append("is_auth", "false");
+        HttpContext.Session.SetString("is_auth", "false");
         return Redirect("/admin");
     }
     //---------------------------------------------------------------------

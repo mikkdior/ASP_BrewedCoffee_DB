@@ -1,0 +1,3 @@
+DBConnectionString;Server=(localdb)\\mssqllocaldb;Database=coffee_v02;Trusted_Connection=True
+AdminLogin;1
+AdminPass;2

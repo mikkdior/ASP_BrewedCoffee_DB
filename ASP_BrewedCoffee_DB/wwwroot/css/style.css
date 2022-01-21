@@ -254,6 +254,9 @@ hr {
 	font-size: 18px;
 	color: #CFBF66;
 }
+#sidebar #favorites {
+	background: url(/images/img06.gif) no-repeat left top;
+}
 
 #sidebar h2 a {
 	background: url(/images/img03.gif) no-repeat left 50%;

@@ -7,8 +7,8 @@
 }
 <div class="post">
     <h2 class="title">@post.Title</h2>
-    @*<form method="post" action="#">
-        @if (likes.IndexOf(@post.Title) >= 0)
+    <form method="post" action="#">
+        @if (likes.Contains(@post.Id.ToString()))
         {
             <button class="btn btn-like-pressed" type="submit">
                 <span class="count-likes">@post.Likes</span>
@@ -33,10 +33,10 @@
             </button>
             <input type="hidden" name="action" value="like">
         }
-        <input type="hidden" name="postname" value="@post.Title">
-    </form>*@
-    @*<form method="post" action="#">
-        @if (favorites.IndexOf(@post.Title) >= 0)
+        <input type="hidden" name="post_id" value="@post.Id">
+    </form>
+    <form method="post" action="#">
+        @if (favorites.Contains(@post.Id.ToString()))
         {
             <input class="to-favorites in-favorites" type="submit" value="favorite">
         }
@@ -44,9 +44,9 @@
         {
             <input class="to-favorites" type="submit" value="to favorites">
         }
-        <input type="hidden" name="postname" value="@post.Title">
+        <input type="hidden" name="post_id" value="@post.Id">
         <input type="hidden" name="action" value="favorite">
-    </form>*@
+    </form>
     <p class="byline"><small>Posted on @post.CreatedDate.ToShortDateString() by @post.Author</small></p>
     <div class="entry">
         <p>@post.Content</p>

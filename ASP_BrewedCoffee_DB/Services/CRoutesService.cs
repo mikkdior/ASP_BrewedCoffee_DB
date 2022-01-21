@@ -12,7 +12,6 @@
                     routes.MapRoute(route.Name, route.Template, new { controller = route.Controller, action = route.Action });
             });
 
-            app.UseRouting();
             app.UseEndpoints(endpoints => endpoints.MapFallbackToController("Page404", "Home"));
         }
         public CRoute GetRoute(string name)

@@ -3,7 +3,7 @@
 <div id="sidebar">
     <ul>
         <li>
-            <h2><a class="favorite-sidebar" href="@routes_service.GetRoute("favorites").Template">Favorite posts</a></h2>
+            <h2 id="favorites"><a class="favorite-sidebar" href="@routes_service.GetRoute("favorites").Template">Favorite posts</a></h2>
         </li>
         <li>
             @await Html.PartialAsync("_SidebarMenu", Context.Items["CategoriesMenu"])

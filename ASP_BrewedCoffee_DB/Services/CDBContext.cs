@@ -3,19 +3,20 @@
 namespace ASP_BrewedCoffee_DB.Models;
 public class CDBContext : DbContext
 {
-    private string ConnString = CConfService.DbConnString;
+    private IConfiguration Config;
     public DbSet<CPost>? Posts { get; set; }
     public DbSet<CCategory>? Categories { get; set; }
     public DbSet<COption>? Options { get; set; }
     public DbSet<CRoute>? Routes { get; set; }
 
-    public CDBContext(DbContextOptions options): base(options)
+    public CDBContext(DbContextOptions options, IConfiguration config) : base(options)
     {
+        Config = config;
         Database.EnsureCreated();
     }
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseSqlServer(ConnString);
+        optionsBuilder.UseSqlServer(Config["DBConnectionString"]);
     }
     public string GetOptionsValue(string key)
     {
