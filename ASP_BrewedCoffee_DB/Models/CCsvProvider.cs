@@ -10,7 +10,7 @@
             foreach (string line in lines)
             {
                 string[] parts = line.Split(';');
-                Data.Add(parts[0], parts[1]);
+                Data.Add(parts[0], line.Substring(parts[0].Length + 1));
             }
         }
     }

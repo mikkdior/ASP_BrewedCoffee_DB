@@ -1,3 +1,3 @@
-DBConnectionString;Server=(localdb)\\mssqllocaldb;Database=coffee_v02;Trusted_Connection=True
+DBConnectionString;Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=coffee_v02;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False
 AdminLogin;1
 AdminPass;2

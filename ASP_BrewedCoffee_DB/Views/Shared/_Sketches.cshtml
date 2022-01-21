@@ -1,5 +1,5 @@
 ﻿@using ASP_BrewedCoffee_DB.Models;
-@{ var posts = (IEnumerable<CPost>)Context.Items["Posts"]; }
+@{ var posts = (IEnumerable<CPost>)Context.Items["CurrentPosts"]; }
 @if (posts.Count() == 0)
 {
     <h2 class="no-posts">There is no posts in here</h2>

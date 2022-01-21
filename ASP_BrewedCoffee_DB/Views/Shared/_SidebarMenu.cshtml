@@ -1,11 +1,9 @@
 ﻿@using ASP_BrewedCoffee_DB.Models
 @model CMenu
 <h2>@Model.Title</h2>
-<span>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</span>
 <ul>
     @foreach (CMenuItem menu_item in Model)
     {
-        <span>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</span>
         @if (menu_item.Count > 0)
         {
             <li><a href="@menu_item.Url">@menu_item.Title</a> 
@@ -15,12 +13,5 @@
                 }
             </li>
         }
-
-        @*<li><a href="@menu_item.Url">@menu_item.Title</a> 
-            @if (Model.ShowCount)
-            {
-                <span>(@menu_item.Count)</span>
-            }
-        </li>*@
     }
 </ul>

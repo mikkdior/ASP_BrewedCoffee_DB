@@ -3,7 +3,8 @@ public record RAdminData(string AdminLogin, string AdminPass);
 public class CAuthService
 {
     public RAdminData AdminAuthData;
-    public CAuthService(IConfiguration config) => AdminAuthData = config.Get<RAdminData>();
+    public CAuthService(IConfiguration config) => AdminAuthData = new RAdminData(config["AdminLogin"], config["AdminPass"]);
+    //AdminAuthData = config.Get<RAdminData>();
     public bool CheckAuth(HttpContext context) => context.Session.GetString("is_auth") == "true";
     public bool Authorization(HttpContext context, RAdminData input_data) 
     {

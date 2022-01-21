@@ -3,18 +3,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddSingleton<CConfService>();
 builder.Configuration.AddCSVProviderData();
 builder.Services.AddDbContext<CDBContext>();
-builder.Configuration.AddInMemoryCollection(new Dictionary<string, string>()
-{
-    {"CatMenuTitle", CConfService.DB.GetOptionsValue("CatMenuTitle") },
-    {"ArchMenuTitle", CConfService.DB.GetOptionsValue("ArchMenuTitle") }
-});
+CConfService.DB = builder.Services.BuildServiceProvider().GetService<CDBContext>();
 builder.Services.AddTransient<CRoutesService>();
 builder.Services.AddSingleton<CApiService>();
 //--------------------------------------------------
-CConfService.DB = builder.Services.BuildServiceProvider().GetService<CDBContext>();
 CRoutesService routes_service = builder.Services.BuildServiceProvider().GetService<CRoutesService>();
 CApiService api_service = builder.Services.BuildServiceProvider().GetService<CApiService>();
-
 builder.Services.Configure<RAdminData>(builder.Configuration);
 //--------------------------------------------------
 builder.Services.AddTransient<CPostsService>();

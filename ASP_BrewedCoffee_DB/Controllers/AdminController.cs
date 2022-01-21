@@ -31,9 +31,8 @@ public class AdminController : Controller
 
     // all categories table
     public IActionResult Categories() => IsAdmin() ? View(CategoriesModel.GetCats()) : Redirect("/admin");
-        
+    
     //---------------------------------------------------
-
     // тут пользователь идет по пути с возможностью добавления
     // айди. если айди есть - форма заполняется данными во вьюшке. Если нет - приходит пустая форма для 
     // заполнения. - добавление нового поста
