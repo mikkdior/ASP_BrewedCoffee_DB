@@ -56,7 +56,7 @@ namespace ASP_BrewedCoffee_DB.Models
     public class CPaginationData
     {
         protected HttpContext Context;
-        public int CurrentPage { get => !Context.Request.Query.ContainsKey("page") ? 1 : int.Parse(Context.Request.Query["page"].ToString()); }
+        public int CurrentPage { get => int.Parse(Context.Items["Page"].ToString()); }
         public int AllPostsCount { get => int.Parse(Context.Items["AllFilteredPostsNum"].ToString()); }
         public int PostsPerPage { get => int.Parse(Context.Items["PostsPerPage"].ToString()); }
         public int MaxPages { get => (int)Math.Ceiling(decimal.Divide(AllPostsCount, PostsPerPage)); }

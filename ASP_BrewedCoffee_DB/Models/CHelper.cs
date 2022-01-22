@@ -64,10 +64,11 @@ public static class CHelper
 
         return null;
     }
-    public static int ValidatePage(int page, int MaxPages)
+    public static int ValidatePage(int page, int all_posts_num, int num_per_page)
     {
-        if (page > MaxPages) page = MaxPages;
-        else if (page< 1) page = 1;
+        int max_pages = (int)Math.Ceiling(decimal.Divide(all_posts_num, num_per_page));
+        if (page > max_pages) page = max_pages;
+        else if (page < 1) page = 1;
 
         return page;
     }
