@@ -348,6 +348,7 @@ hr {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	margin-top: 35px;
 }
 .pagination > a {
 	font-size: 21px;

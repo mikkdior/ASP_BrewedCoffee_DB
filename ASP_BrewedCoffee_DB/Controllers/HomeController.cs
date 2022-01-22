@@ -31,8 +31,6 @@ public class HomeController : Controller
         HttpContext.Items.Add("CurrentPosts", PostsService.GetCurrentPosts(all_filtered_posts, page, num));
         HttpContext.Items.Add("AllFilteredPostsNum", all_filtered_posts.Count());
 
-
-
         return View();
     }
     public IActionResult Archive(string month, int page = 1)

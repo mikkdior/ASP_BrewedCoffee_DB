@@ -64,4 +64,11 @@ public static class CHelper
 
         return null;
     }
+    public static int ValidatePage(int page, int MaxPages)
+    {
+        if (page > MaxPages) page = MaxPages;
+        else if (page< 1) page = 1;
+
+        return page;
+    }
 }
