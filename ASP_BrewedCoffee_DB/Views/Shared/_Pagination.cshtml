@@ -5,11 +5,37 @@
     int max_pages = (int)Math.Ceiling(decimal.Divide(posts_count, posts_per_page));
     int forward = (int)Math.Ceiling(decimal.Divide(max_pages + current_page, 2));
     int backward = (int)Math.Ceiling(decimal.Divide(1 + current_page, 2));
+
+    var pagination = new CPagination(Context);
 }
-@if (max_pages > 1)
+@if (pagination.MaxPages > 1)
 {
     <div class="pagination">
         @*выставляем по надобности кнопку Предыдущая страница *@
+        @if(current_page > 1)
+            {
+                <div class="prev">
+                    <a class="my-icons arrow-box" href="?page=@(current_page - 1)">
+                        <i class="fa fa-chevron-left left-arrow"></i>
+                    </a>
+                </div>
+            }
+
+        @pagination.GetArrow("prev", "my-icons arrow-box", "fa fa-chevron-left left-arrow", EDirection.Previous)
+        
+        @*@foreach (string item in pagination.GetPages("page", "current", "last", "dotted", "..."))
+        {
+            @item
+        }
+        @pagination.GetArrow("next", "my-icons arrow-box", "fa fa-chevron-left right-arrow", EDirection.Next)*@
+    </div>
+}
+
+@*
+@if (max_pages > 1)
+{
+    <div class="pagination">
+        @*выставляем по надобности кнопку Предыдущая страница *@@*
         @if(current_page > 1)
             {
                 <div class="prev">
@@ -89,7 +115,7 @@
                 <a class="last" href="?page=@max_pages">@max_pages</a>
             } 
         }
-        @*выставляем по надобности кнопку Следующая страница *@
+        @*выставляем по надобности кнопку Следующая страница *@@*
         @if(current_page != max_pages)
         {
             <div class="next">
@@ -98,5 +124,6 @@
                 </a>
             </div>
         }
-    </div>
+        </div>
 }
+*@
