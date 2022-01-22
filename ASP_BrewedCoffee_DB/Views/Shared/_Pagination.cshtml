@@ -1,129 +1,37 @@
-﻿@{
-    int posts_count = int.Parse(Context.Items["AllFilteredPostsNum"].ToString());
-    int posts_per_page = int.Parse(Context.Items["PostsPerPage"].ToString());
-    int current_page = !Context.Request.Query.ContainsKey("page") ? 1 : int.Parse(Context.Request.Query["page"].ToString());
-    int max_pages = (int)Math.Ceiling(decimal.Divide(posts_count, posts_per_page));
-    int forward = (int)Math.Ceiling(decimal.Divide(max_pages + current_page, 2));
-    int backward = (int)Math.Ceiling(decimal.Divide(1 + current_page, 2));
-
-    var pagination = new CPagination(Context);
-}
+﻿@{ var pagination = new CPagination(Context); }
 @if (pagination.MaxPages > 1)
 {
     <div class="pagination">
-        @*выставляем по надобности кнопку Предыдущая страница *@
-        @if(current_page > 1)
+        @if(pagination.CurrentPage > 1)
             {
                 <div class="prev">
-                    <a class="my-icons arrow-box" href="?page=@(current_page - 1)">
+                    <a class="my-icons arrow-box" href="?page=@pagination.PrevPage">
                         <i class="fa fa-chevron-left left-arrow"></i>
                     </a>
                 </div>
             }
-
-        @pagination.GetArrow("prev", "my-icons arrow-box", "fa fa-chevron-left left-arrow", EDirection.Previous)
-        
-        @*@foreach (string item in pagination.GetPages("page", "current", "last", "dotted", "..."))
+        @foreach (var item in pagination.GetPages("page", "current", "uncurrent", "last", "dotted", "..."))
         {
-            @item
-        }
-        @pagination.GetArrow("next", "my-icons arrow-box", "fa fa-chevron-left right-arrow", EDirection.Next)*@
-    </div>
-}
-
-@*
-@if (max_pages > 1)
-{
-    <div class="pagination">
-        @*выставляем по надобности кнопку Предыдущая страница *@@*
-        @if(current_page > 1)
+            if (item.Url == "#")
             {
-                <div class="prev">
-                    <a class="my-icons arrow-box" href="?page=@(current_page - 1)">
-                        <i class="fa fa-chevron-left left-arrow"></i>
-                    </a>
-                </div>
+                <a class="@item.ClassName" href="#">@item.Title</a>
             }
-        @if (max_pages <= 4)
-        {
-            for(int i = 1; i <= max_pages; i++)
+            else if (item.Title == "...")
             {
-                if (current_page == i)
-                {
-                    <span class="current"><a href="#">@i</a></span>
-                }
-                else
-                {
-                    <a href="?page=@i">@i</a>
-                }
+                <a class="@item.ClassName" href="@item.Url">...</a>
+            }
+            else
+            {
+                <a class="@item.ClassName" href="@item.Url">@item.Title</a>
             }
         }
-        else
-        {
-            if(current_page == 1)
-            {
-                <span class="current"><a href="#">1</a></span>
-            }
-            else if(current_page >= 2)
-            {
-                if (current_page == 3)
-                {
-                    <a href="?page=1">1</a>
-                }
-                if (current_page >= 4)
-                {
-                    <a href="?page=1">1</a>
-                    <span class="dotted"><a href="?page=@backward">…</a></span>
-                }
-                if (current_page >= max_pages - 1)
-                {
-                    <a href="?page=@(current_page - 2)">@(current_page - 2)</a>
-                }
-                if (current_page >= 3)
-                {
-                    if(current_page == max_pages && max_pages >= 4)
-                    {
-                        <a href="?page=@(current_page - 3)">@(current_page - 3)</a>
-                    }
-                    if (max_pages <= 4)
-                    {
-                        <a href="?page=@(current_page - 2)">@(current_page - 2)</a>
-                    }
-                }
-                <a href="?page=@(current_page - 1)">@(current_page - 1)</a>
-                <span class="current"><a href="#">@current_page</a></span>
-            }
-        
-            if (max_pages > current_page + 1)
-            {
-                <a href="?page=@(current_page + 1)">@(current_page + 1)</a>
-                if (current_page == 1)
-                {
-                    <a href="?page=@(current_page + 2)">@(current_page + 2)</a>
-                }
-                if (current_page <= 2)
-                {
-                    <a href="?page=4">4</a>
-                }
-                if(max_pages > 4 && current_page < max_pages - 2)
-                    {
-                        <span class="dotted"><a href="?page=@forward ">…</a></span>
-                    }
-            }
-            if (max_pages > current_page)
-            {
-                <a class="last" href="?page=@max_pages">@max_pages</a>
-            } 
-        }
-        @*выставляем по надобности кнопку Следующая страница *@@*
-        @if(current_page != max_pages)
+        @if(pagination.CurrentPage != pagination.MaxPages)
         {
             <div class="next">
-                <a class="my-icons arrow-box" href="?page=@(current_page + 1)">
+                <a class="my-icons arrow-box" href="?page=@pagination.NextPage">
                     <i class="fa fa-chevron-right right-arrow"></i>
                 </a>
             </div>
         }
-        </div>
+    </div>
 }
-*@

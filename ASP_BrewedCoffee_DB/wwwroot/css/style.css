@@ -353,8 +353,10 @@ hr {
 	font-size: 21px;
 	line-height: 50px;
 	width: 50px;
+	height: 35px;
 	display: inline-block;
 	text-decoration: none;
+	line-height: 1.8;
 }
 .next {
 	display: inline-block;
@@ -362,6 +364,7 @@ hr {
 	padding: 0 0 0 35px;
 	right: 0;
 	line-height: 50px;
+	margin-top: 4px;
 }
 .next a {
 	vertical-align: top;
@@ -378,13 +381,13 @@ hr {
 	width: auto;
 }
 .prev {
+	margin-top: 4px;
 	display: inline-block;
 	padding: 0px;
 	padding: 0 35px 0 0;
 	left: 0;
 	line-height: 50px;
 }
-
 .prev a {
 	text-decoration: none;
 	font-size: 15px
@@ -397,7 +400,6 @@ hr {
 .right-arrow {
 	padding-left: 5px;
 }
-
 .arrow-box {
 	display: flex;
 	align-items: center;
@@ -406,12 +408,17 @@ hr {
 	border-radius: 5px;
 	background: #5D5928;
 	font-size: 21px;
-	padding: 2px 15px;
 	margin: 0 5px;
+	color: #EBEBEB;
 }
 .current a {
 	color: #EBEBEB;
 	text-decoration: none;
+}
+.uncurrent:hover, .last:hover, .dotted:hover {
+	box-shadow: 0px 0px 5px #413C20;
+	border-radius: 5px;
+	transition: all 0.2s ease-out;
 }
 .dotted {
 	font-size: 21px;

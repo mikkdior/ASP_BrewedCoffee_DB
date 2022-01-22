@@ -2,83 +2,55 @@
 
 namespace ASP_BrewedCoffee_DB.Models
 {
-    public enum EDirection
-    {
-        Previous,
-        Next
-    }
     public class CPagination : CPaginationData
     {
         public CPagination(HttpContext Context) { this.Context = Context; }
-        public List<string>? GetPages(string page_key, string current_class_name, string last_class_name, string dotted_class, string dotted)
+        public List<CPaginationItem>? GetPages(string page_key, string current_class_name, string uncurrent_class_name, string last_class_name, string dotted_class_name, string dotted)
         {
-            List<string> items = new List<string>();
+            List<CPaginationItem> items = new List<CPaginationItem>();
 
-            if (MaxPages <= 4)
+            if (MaxPages <= 5)
             {
                 for (int i = 1; i <= MaxPages; i++)
-                {
-                    if (CurrentPage == i)
-                        items.Add($"<span class='{current_class_name}'><a href='#'>{i}</a></span>");
-                    else items.Add($"<a href='?{page_key}={i}'>{i}</a>");
-                }
+                    items.Add(CurrentPage == i ? 
+                        new CPaginationItem($"#", i.ToString(), current_class_name) : new CPaginationItem($"?{page_key}={i}", i.ToString(), uncurrent_class_name));
+                
+                return items;
             }
-            else
+            if (CurrentPage == 1) items.Add(new CPaginationItem($"#", "1", current_class_name));
+            else if (CurrentPage > 1)
             {
-                if (CurrentPage == 1)
-                    items.Add ($"<span class='{current_class_name}'><a href='#'>1</a></span>");
-                else if (CurrentPage > 1)
+                if (CurrentPage == 3) items.Add(new CPaginationItem($"?{page_key}=1", "1", uncurrent_class_name));
+                else if (CurrentPage > 3)
                 {
-                    if (CurrentPage == 3)
-                        items.Add($"<a href='?{page_key}=1'>1</a>");
-                    
-                    if (CurrentPage >= 4)
-                    {
-                        items.Add($"<a href='?{page_key} = 1'>1</a>");
-                        items.Add($"<span class='{dotted_class}'><a href='?{page_key}={DottBackward}'>{dotted}</a></span>");
-                    }
-                    if (CurrentPage >= MaxPages - 1)
-                        items.Add($"<a href='?{page_key}={CurrentPage - 2}'>{CurrentPage - 2})</a>");
-                    
-                    if (CurrentPage >= 3)
-                    {
-                        if (CurrentPage == MaxPages && MaxPages >= 4)
-                            items.Add($"<a href='?{page_key}={CurrentPage - 3}'>{CurrentPage - 3}</a>");
-                        
-                        if (MaxPages <= 4)
-                            items.Add($"<a href='?{page_key}={CurrentPage - 2}'>{CurrentPage - 2}</a>");
-                    }
-
-                    items.Add($"<a href='?{page_key}={CurrentPage - 1}'>{CurrentPage - 1}</a>");
-                    items.Add($"<span class='{current_class_name}'><a href='#'>{CurrentPage}</a></span>");
+                    items.Add(new CPaginationItem($"?{page_key}=1", "1", uncurrent_class_name));
+                    items.Add(new CPaginationItem($"?{page_key}={DottBackward}", dotted, dotted_class_name));
                 }
-                if (MaxPages > CurrentPage + 1)
+                if (CurrentPage == MaxPages - 1) items.Add(new CPaginationItem($"?{page_key}={CurrentPage - 2}", (CurrentPage - 2).ToString(), uncurrent_class_name));
+                if (CurrentPage > 2)
                 {
-                    items.Add($"<a href='?{page_key}={CurrentPage + 1}'>{CurrentPage + 1}</a>");
-                    if (CurrentPage == 1)
-                        items.Add($"<a href='?{page_key}={CurrentPage + 2}'>{CurrentPage + 2}</a>");
-                    if (CurrentPage <= 2)
-                        items.Add($"<a href='?{page_key}=4'>4</a>");
-                    if (MaxPages > 4 && CurrentPage < MaxPages - 2)
-                        items.Add($"<span class='{dotted_class}'><a href='?{page_key}={DottForward}'>{dotted}</a></span>");
+                    if (CurrentPage == MaxPages && MaxPages >= 4) 
+                    {
+                        items.Add(new CPaginationItem($"?{page_key}={CurrentPage - 3}", (CurrentPage - 3).ToString(), uncurrent_class_name));
+                        items.Add(new CPaginationItem($"?{page_key}={CurrentPage - 2}", (CurrentPage - 2).ToString(), uncurrent_class_name));
+                    } 
+                    if (MaxPages < 5) items.Add(new CPaginationItem($"?{page_key}={CurrentPage - 2}", (CurrentPage - 2).ToString(), uncurrent_class_name));
                 }
-                if (MaxPages > CurrentPage)
-                    items.Add($"<a class='{last_class_name}' href='?{page_key}={MaxPages}'>{MaxPages}</a>");
+                items.Add(new CPaginationItem($"?{page_key}={CurrentPage - 1}", (CurrentPage - 1).ToString(), uncurrent_class_name));
+                items.Add(new CPaginationItem($"#", CurrentPage.ToString(), current_class_name));
             }
-
-            //foreach(string i in items) i = "";
+            if (MaxPages > CurrentPage + 1)
+            {
+                items.Add(new CPaginationItem($"?{page_key}={CurrentPage + 1}", (CurrentPage + 1).ToString(), uncurrent_class_name));
+                if (CurrentPage == 1)
+                    items.Add(new CPaginationItem($"?{page_key}={CurrentPage + 2}", (CurrentPage + 2).ToString(), uncurrent_class_name));
+                if (CurrentPage <= 2) items.Add(new CPaginationItem($"?{page_key}=4", "4", uncurrent_class_name));
+                if (MaxPages > 4 && CurrentPage < MaxPages - 2)
+                    items.Add(new CPaginationItem($"?{page_key}={DottForward}", dotted, dotted_class_name));
+            }
+            if (MaxPages > CurrentPage) items.Add(new CPaginationItem($"?{page_key}={MaxPages}", MaxPages.ToString(), last_class_name));
 
             return items;
-        }
-        public string GetArrow(string arrow_class_name, string a_class_name, string i_class_name, EDirection direction)
-        {
-            int num_page = direction == EDirection.Next ? CurrentPage + 1 : CurrentPage - 1;
-
-            return $"<!DOCTYPE html><div class='{arrow_class_name}'>" +
-                        $"<a class='{a_class_name}' href='?page={num_page}'>" +
-                            $"<i class='{i_class_name}'></i>" +
-                        $"</a>" +
-                    $"</div>";
         }
     }
     public class CPaginationData
@@ -90,5 +62,8 @@ namespace ASP_BrewedCoffee_DB.Models
         public int MaxPages { get => (int)Math.Ceiling(decimal.Divide(AllPostsCount, PostsPerPage)); }
         public int DottForward { get => (int)Math.Ceiling(decimal.Divide(MaxPages + CurrentPage, 2)); }
         public int DottBackward { get => (int)Math.Ceiling(decimal.Divide(1 + CurrentPage, 2)); }
+        public int PrevPage { get => CurrentPage - 1; }
+        public int NextPage { get => CurrentPage + 1; }
     }
+    public record CPaginationItem(string Url, string Title, string ClassName);
 }
