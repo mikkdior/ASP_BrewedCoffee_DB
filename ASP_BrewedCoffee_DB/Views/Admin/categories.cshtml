@@ -1,15 +1,16 @@
 ﻿@using ASP_BrewedCoffee_DB.Models
 @model IEnumerable<CCategory>
+@inject IConfiguration Config
 @{
     ViewData["Title"] = "Admin Edit Category Page";
 }
 <div class="admin-content">
     <ul>
         <li>
-            <a href="/admin/categories"> Show Categories</a>
+            <a href="@Config["route_admin-categories"]"> Show Categories</a>
         </li>
         <li>
-            <a href="/admin/posts">Show Posts</a>
+            <a href="@Config["route_admin-posts"]">Show Posts</a>
         </li>
     </ul>
     <h1>Categories</h1>
@@ -18,11 +19,11 @@
         {
             <li>
                 <span>@cat.Id - </span>
-                <a class="admin-list-item" href="/admin/categories/category/@cat.Id">@cat.Title</a>
+                <a class="admin-list-item" href="@Config["route_admin-edit-category"].Replace("{id?}", @cat.Id.ToString())">@cat.Title</a>
             </li>
         }
     </ul>
-    <a href="/admin/categories/category">Add new</a>
-    <a href='/admin/logout'><input type="button" value="Log Out"></a>
+    <a href="@Config["route_admin-edit-category"].Replace("{id?}", string.Empty)">Add new</a>
+    <a href='@Config["route_logout"]'><input type="button" value="Log Out"></a>
 </div>>
 

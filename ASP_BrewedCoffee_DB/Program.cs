@@ -4,6 +4,7 @@ builder.Services.AddSingleton<CConfService>();
 builder.Configuration.AddCSVProviderData();
 builder.Services.AddDbContext<CDBContext>();
 CConfService.DB = builder.Services.BuildServiceProvider().GetService<CDBContext>();
+builder.Configuration.AddDBProviderData();
 builder.Services.AddTransient<CRoutesService>();
 builder.Services.AddSingleton<CApiService>();
 //--------------------------------------------------
@@ -17,7 +18,6 @@ builder.Services.AddTransient<CAuthService>();
 //--------------------------------------------------
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddMvc((options) => options.EnableEndpointRouting = false).AddSessionStateTempDataProvider();
-builder.Services.AddRazorPages().AddSessionStateTempDataProvider();
 builder.Services.AddSession(options =>
 {
     options.Cookie.Name = ".MyApp.Session";

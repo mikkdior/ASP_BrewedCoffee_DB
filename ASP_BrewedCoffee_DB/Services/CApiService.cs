@@ -3,14 +3,14 @@ public class CFilterAttributes
 {
     public int Page = 1;
     public int Num = 5;
-    public string RedirectPath;
+    public string? RedirectPath;
     public int CategoryId = -1;
     public DateTime MinDate = DateTime.MinValue;
     public DateTime MaxDate = DateTime.MaxValue;
 }
 public class CApiService
 {
-    private IRouter Router;
+    private IRouter? Router;
     public void UseApi(IApplicationBuilder app, CRoutesService route_service)
     {
         Router = new RouteBuilder(app, new RouteHandler(GetFilteredPosts))

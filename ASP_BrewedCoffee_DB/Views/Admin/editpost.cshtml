@@ -1,4 +1,5 @@
 ﻿@model CPost
+@inject IConfiguration Config
 @{
     ViewData["Title"] = "Admin Edit Post Page";
 }
@@ -88,7 +89,7 @@
             </p>
         }
     </form>
-    <a href='/admin/posts'><input type="button" value="Cancel"></a>
-    <a href='/admin/logout'><input type="button" value="Log Out"></a>
+    <a href='@Config["route_admin-posts"]'><input type="button" value="Cancel"></a>
+    <a href='@Config["route_logout"]'><input type="button" value="Log Out"></a>
 </div>
 

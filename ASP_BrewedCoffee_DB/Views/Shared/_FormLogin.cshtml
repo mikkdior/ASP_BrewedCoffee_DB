@@ -1,24 +1,16 @@
-﻿<div class="admin-content">
-    <h1>Please sign in as administrator</h1>
-    <form method="post" action="#">
-        <p>
-        <label>
-            <span>Login: </span>
-            <input type="text" placeholder="login" name="AdminLogin">
-        </label>
-        </p>
-        <p>
-            <label>
-                <span>Password: </span>
-                <input type="password" placeholder="password" name="AdminPass">
-            </label>
-        </p>
-        <p>
-            <label>
-                <span>Title: </span>
-                <input type="submit" value="Log In">
-            </label>
-        </p>
-        <p><input type="hidden" value="log_in" name="action"></p>
-    </form>
+﻿@model bool
+<div class="admin-content">
+    <h1 class="sign-in">Please sign in as administrator</h1>
+    <div class="sign-in-form">
+        <form method="post" action="#">
+            <input class="user-input" type="text" name="AdminLogin" id="name" placeholder="login"  />
+            <input type="password" name="AdminPass" id="name" placeholder="password" />
+            <input class="sign-in-button" type="submit" value="Sign in" />
+            <input type="hidden" value="log_in" name="action">
+        </form>  
+    </div>
+    @if (!Model)
+    {
+        <span class="incorrect-pass">Incorrect password! Please, try again.</span>
+    }
 </div>

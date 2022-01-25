@@ -1,28 +1,51 @@
 ﻿@using ASP_BrewedCoffee_DB.Models
 @model IEnumerable<CPost>
+@inject IConfiguration Config
 @{
     ViewData["Title"] = "Admin Posts Page";
 }
 <div class="admin-content">
-    <ul>
+    <ul class="admin-menu">
         <li>
-            <a href="/admin/categories"> Show Categories</a>
+            <a href="@Config["route_admin-posts"]">Show Posts</a>
         </li>
         <li>
-            <a href="/admin/posts">Show Posts</a>
+            <a href="@Config["route_admin-categories"]"> Show Categories</a>
+        </li>
+        <li>
+            <a href='#'>Change something</a>
+        </li>
+        <li>
+            <a href='#'>Enter the Matrix</a>
+        </li>
+        <li>
+            <a href='@Config["route_logout"]'>Log out</a>
         </li>
     </ul>
-    <h1>Posts</h1>
-    <ul>
+    <div class="open-post-id">
+        <span>Open post by id:</span> 
+        <form method="get" action="@Config["route_admin-find-post"]">
+            <input type="number" name="id">
+            <input type="submit" value="Open">
+            <input type="hidden" name="action" value="open_post_id">
+        </form>
+    </div>
+    <h1 class="admin-posts">Posts</h1>
+    <ul class="admin-posts-list">
         @foreach (CPost post in Model)
         {
-            <li>
-                <span>@post.Id - </span>
-                <a class="admin-list-item" href="/admin/posts/post/@post.Id">@post.Title</a>
-                <span>   by @post.Author</span>
+            <li class="admin-list-item">
+                <div>
+                    <a href="@Config["route_admin-edit-post"].Replace("{id?}", @post.Id.ToString())">edit</a>
+                    <span>@post.Id - </span>
+                    @post.Title
+                    <span class="post-by">   by @post.Author</span>
+                </div>
+                <a href="@Config["route_admin-edit-post"].Replace("{id?}", @post.Id.ToString())">del</a>
             </li>
         }
     </ul>
-    <a href="/admin/posts/post">Add new</a>
-    <a href='/admin/logout'><input type="button" value="Log Out"></a>
+    <a class="add-post-button" href="@Config["route_admin-edit-post"].Replace("{id?}", string.Empty)">Add new</a>
+    @await Html.PartialAsync("_Pagination")
 </div>
+    

@@ -1,4 +1,5 @@
-﻿@using ASP_BrewedCoffee_DB.Models;
+﻿@using ASP_BrewedCoffee_DB.Models
+@inject IConfiguration Config
 <div id="header">
-    <h1><a href="/">@CConfService.DB.GetOptionsValue("MainTitle")</a></h1>
+    <h1><a href="/">@Config["option_MainTitle"]</a></h1>
 </div>

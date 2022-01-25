@@ -365,14 +365,7 @@ hr {
 	padding: 0 0 0 35px;
 	right: 0;
 	line-height: 50px;
-	margin-top: 4px;
-}
-.next a {
-	vertical-align: top;
-	color: #000;
-	text-decoration: none;
-	line-height: 50px;
-	font-size: 15px
+	margin-top: 2px;
 }
 .fa-chevron-right {
 	font-size: 15px;
@@ -382,28 +375,18 @@ hr {
 	width: auto;
 }
 .prev {
-	margin-top: 4px;
 	display: inline-block;
 	padding: 0px;
 	padding: 0 35px 0 0;
 	left: 0;
 	line-height: 50px;
+	margin-top: 2px;
 }
-.prev a {
-	text-decoration: none;
-	font-size: 15px
-}
-
 .left-arrow {
 	padding-right: 5px;
 }
-
 .right-arrow {
 	padding-left: 5px;
-}
-.arrow-box {
-	display: flex;
-	align-items: center;
 }
 .current {
 	border-radius: 5px;
@@ -571,7 +554,6 @@ hr {
 .btn:not(.liked).btn-icon-liked {
 	transform: rotate(-90deg)
 }
-
 .liked .btn--icon-default,
 .btn-icon-liked {
 	opacity: 0;
@@ -586,4 +568,187 @@ hr {
 .admin-list-item{
 	font-style: italic;
 	font-size: 20px;
+}
+.incorrect-pass {
+	color: darkred;
+	text-align:center;
+	margin:auto;
+	display: block;
+}
+.sign-in {
+	color: black;
+	font-size: 1.3em;
+	text-align: center;
+	margin-bottom: 20px;
+}
+.sign-in-button:hover {
+	color: black;
+}
+.sign-in-form input {
+	display: block;
+	width: 40%;
+	padding: 5px;
+	height: 40px;
+	border-radius: 3px;
+	margin: 5px 0;
+	outline: none;
+}
+.sign-in-form input[type="text"]:focus, input[type="password"]:focus {
+	border: 2px solid lightgrey;
+	box-shadow: none;
+}
+.user-input:focus .user {
+	background: white !important;
+}
+.sign-in-form input[type="text"] {
+	background: transparent;
+	border: 2px solid grey;
+	padding: 0 45px;
+	color: #e6b333;
+	margin: auto;
+	margin-bottom: 5px;
+	text-align: center;
+}
+.sign-in-form input[type="password"] {
+	background: transparent;
+	border: 2px solid grey;
+	color: #e6b333;
+	margin: auto;
+	padding: 0 45px;
+	text-align: center;
+	margin: auto;
+	margin-bottom: 5px;
+}
+.sign-in-form input[type="submit"] {
+	background: linear-gradient( 45deg, grey, transparent);
+	border: none;
+	color: black;
+	text-align: center;
+	font-size: 0.8em;
+	cursor: pointer;
+	margin: auto;
+	width: 40%;
+	cursor: pointer;
+	margin-bottom: 10px;
+	font-size: 13px;
+}
+.sign-in-form input[type="submit"]:hover {
+	background: grey;
+	color: #EBEBEB;
+	transition: all 1000ms;
+}
+.page-404 {
+	display: block;
+	text-align: center;
+	color: darkgray;
+	font-family: ui-monospace;
+	margin: 150px 0 150px 0;
+}
+.page-404-button {
+	width: 70%;
+	height: 50px;
+	border: 2px solid gray;
+	cursor: pointer;
+	font-family: ui-monospace;
+	font-size: 20px;
+	background: cornsilk;
+	display: block;
+	margin: auto;
+	text-align: center;
+	line-height: 2.4;
+	text-decoration: none;
+}
+.page-404-button:hover{
+	transition: all 200ms;
+	transform: scale(0.99);
+}
+.admin-menu {
+	display: flex;
+	list-style: none;
+	background: radial-gradient(#2C2800, transparent);
+	width: 95.3%;
+	padding: 0;
+	margin: 0;
+	padding: 0 20px;
+	justify-content: space-around;
+	height: 30px;
+}
+.admin-menu li {
+	color: #EBEBEB;
+	box-shadow: 0 0 10px #212413;
+	border-top-style: double;
+}
+.admin-menu li:hover {
+	transition: all 100ms;
+	transform: translateY(-1px);
+	line-height: 2.2;
+}
+.admin-menu li a {
+	color: #EBEBEB;
+	text-decoration: none;
+	font-weight: bolder;
+	padding: 10px;
+}
+.admin-posts {
+	text-align: center;
+	color: #212413;
+}
+.admin-posts-list {
+	list-style: none;
+	padding: 0;
+}
+.admin-list-item {
+	display: flex;
+	justify-content: space-between;
+}
+.admin-list-item + .admin-list-item{
+	margin-top: 5px;
+}
+.admin-list-item div a, .admin-list-item a {
+	border: 1px solid black;
+	font-size: 15px;
+	padding: 5px;
+	text-decoration: none;
+	cursor: pointer;
+}
+.admin-list-item div a:hover {
+	background: grey;
+	color: #EBEBEB;
+}
+.admin-list-item a:hover {
+	background: firebrick;
+	color: #EBEBEB;
+}
+.post-by{
+	font-size: 15px;
+	color: darkred;
+}
+.add-post-button {
+	width: 100%;
+	display: block;
+	border: 1px solid grey;
+	background: #5D5928;
+	text-align: center;
+	color: white;
+	text-decoration: none;
+	height: 40px;
+	margin: auto;
+	line-height: 3.1;
+	margin-top: 30px;
+}
+.add-post-button:hover{
+	background: seagreen;
+}
+.open-post-id {
+	display: flex;
+	margin: auto;
+	margin-top: 30px;
+	justify-content: center;
+	align-items: center;
+}
+.open-post-id input{
+	margin-left: 10px;
+}
+.open-post-id input[type="number"]{
+	width: 70px;
 }

@@ -4,11 +4,9 @@
     <div class="pagination">
         @if(pagination.CurrentPage > 1)
             {
-                <div class="prev">
-                    <a class="my-icons arrow-box" href="?page=@pagination.PrevPage">
-                        <i class="fa fa-chevron-left left-arrow"></i>
-                    </a>
-                </div>
+                <a class="prev my-icons" href="?page=@pagination.PrevPage">
+                    <i class="fa fa-chevron-left left-arrow"></i>
+                </a>
             }
         @foreach (var item in pagination.GetPages("page", "current", "uncurrent", "last", "dotted", "..."))
         {
@@ -27,11 +25,9 @@
         }
         @if(pagination.CurrentPage != pagination.MaxPages)
         {
-            <div class="next">
-                <a class="my-icons arrow-box" href="?page=@pagination.NextPage">
-                    <i class="fa fa-chevron-right right-arrow"></i>
-                </a>
-            </div>
+            <a class="next my-icons" href="?page=@pagination.NextPage">
+                <i class="fa fa-chevron-right right-arrow"></i>
+            </a>
         }
     </div>
 }

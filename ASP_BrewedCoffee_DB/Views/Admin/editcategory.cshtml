@@ -1,4 +1,5 @@
 ﻿@model CCategory
+@inject IConfiguration Config
 @{
     ViewData["Title"] = "Admin Categories Page";
 }
@@ -39,6 +40,6 @@
             </p>
         }
     </form>
-    <a href='/admin/categories'><input type="button" value="Cancel"></a>
-    <a href='/admin/logout'><input type="button" value="Log Out"></a>
+    <a href='@Config["route_admin-categories"]'><input type="button" value="Cancel"></a>
+    <a href='@Config["route_logout"]'><input type="button" value="Log Out"></a>
 </div>

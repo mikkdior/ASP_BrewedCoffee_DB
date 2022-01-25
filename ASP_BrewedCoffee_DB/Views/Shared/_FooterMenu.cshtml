@@ -1,5 +1,6 @@
 ﻿@using ASP_BrewedCoffee_DB.Models;
-@{ CFooterMenuM menu = new CFooterMenuM().ParseMenu(CConfService.DB.GetOptionsValue("FooterMenuDict"), CConfService.DB.GetOptionsValue("FooterMenuTitle")); }
+@inject IConfiguration Config
+@{ CFooterMenuM menu = new CFooterMenuM().ParseMenu(Config["option_FooterMenuDict"], Config["option_FooterMenuTitle"]); }
 <p>
     &copy;@menu.Year @menu.Title
     @for (int i = 0; i < menu.Count; i++)
