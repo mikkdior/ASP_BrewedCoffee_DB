@@ -2,17 +2,11 @@
 public class CPostsService
 {
     public CDBContext DB = CConfService.DB;
-    public IEnumerable<CPost>? GetPosts(int? cat_id = null) => cat_id == null ?
-        DB.Posts.OrderByDescending(post => post.CreatedDate) : DB.Posts.OrderByDescending(post => post.CreatedDate).Where(post => post.CategoryId == cat_id);
-    public IEnumerable<CPost>? GetArchivePosts(string month, string arch_menu_title, CMenu arch_menu)
-    {
-        DateTime[] dates = CHelper.GetDates($"/{arch_menu_title.ToLower()}/" + month, arch_menu);
-        return DB.Posts.OrderByDescending(post => post.CreatedDate)
-                .Where(post => post.CreatedDate >= dates[0])
-                .Where(post => post.CreatedDate <= dates[1]);
-    }
-    public IEnumerable<CPost>? GetOldPosts() => 
-        DB.Posts.OrderByDescending(post => post.CreatedDate).Where(post => post.CreatedDate.Year < DateTime.Now.Year);
+    public IEnumerable<CPost>? GetPosts(int? cat_id = null) => DB.Posts.OrderByDescending(post => post.CreatedDate).Where(post => cat_id == null ? true : post.CategoryId == cat_id); 
+    public IEnumerable<CPost>? GetArchivePosts(string month, string arch_menu_title, CMenu arch_menu) => DB.Posts.OrderByDescending(post => post.CreatedDate)
+            .Where(post => post.CreatedDate > DateTime.Now.AddYears(-1) && post.CreatedDate.Month == CHelper.GetMonthNum($"/{arch_menu_title.ToLower()}/" + month, arch_menu));
+    public IEnumerable<CPost>? GetOldPosts() =>
+        DB.Posts.OrderByDescending(post => post.CreatedDate).Where(post => post.CreatedDate < DateTime.Now.AddYears(-1));
     public IEnumerable<CPost>? GetFavoritePosts(HttpContext context) =>
         DB.Posts.OrderByDescending(post => post.CreatedDate).Where(post => ((List<string>)context.Items["favorites"]).Contains(post.Id.ToString()));
     public IEnumerable<CPost> GetCurrentPosts(IEnumerable<CPost> all_posts, int page, int num)

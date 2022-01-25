@@ -30,22 +30,21 @@
             <input type="hidden" name="action" value="open_post_id">
         </form>
     </div>
-    <h1 class="admin-posts">Posts</h1>
+    <h1 class="admin-title">Posts</h1>
     <ul class="admin-posts-list">
         @foreach (CPost post in Model)
         {
             <li class="admin-list-item">
                 <div>
-                    <a href="@Config["route_admin-edit-post"].Replace("{id?}", @post.Id.ToString())">edit</a>
-                    <span>@post.Id - </span>
-                    @post.Title
+                    <a class="change-list-element" href="@Config["route_admin-edit-post"].Replace("{id:int?}", @post.Id.ToString())">edit</a>
+                    <span>@CHelper.CropString(post.Id + " : " + post.Title, 65)</span>
                     <span class="post-by">   by @post.Author</span>
                 </div>
-                <a href="@Config["route_admin-edit-post"].Replace("{id?}", @post.Id.ToString())">del</a>
+                <a class="change-list-element del" href="@Config["route_admin-delete-post"].Replace("{id:int}", @post.Id.ToString())">del</a>
             </li>
         }
     </ul>
-    <a class="add-post-button" href="@Config["route_admin-edit-post"].Replace("{id?}", string.Empty)">Add new</a>
+    <a class="add-post-button" href="@Config["route_admin-edit-post"].Replace("{id:int?}", string.Empty)">Add new</a>
     @await Html.PartialAsync("_Pagination")
 </div>
     

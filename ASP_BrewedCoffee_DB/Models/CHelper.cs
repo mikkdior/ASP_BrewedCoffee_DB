@@ -1,9 +1,8 @@
 ﻿namespace ASP_BrewedCoffee_DB.Models;
 public static class CHelper
 {
-    public static DateTime[] GetDates(string id, CMenu menu)
+    public static int GetMonthNum(string id, CMenu menu)
     {
-        int year = DateTime.Now.Year;
         int month = 1; // filler
         CMenu menu_months = new CMenu();
 
@@ -14,20 +13,14 @@ public static class CHelper
         }
 
         for (int i = 0; i < menu_months.Count; i++)
-            
+
             if (menu_months[i].Url == id)
             {
                 month = ++i;
                 break;
             }
 
-        int max_days = DateTime.DaysInMonth(year, month);
-
-        return new DateTime[2]
-        {
-            new DateTime(year, month, 1), //min
-            new DateTime(year, month, max_days) //max
-        };
+        return month;
     }
     public static DateTime ParseDate(string date)
     {
@@ -72,4 +65,5 @@ public static class CHelper
 
         return page;
     }
+    public static string CropString(string text, int max_len) => text.Length < max_len ? text : text[0..max_len] + "...";
 }

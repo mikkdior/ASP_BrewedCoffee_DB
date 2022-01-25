@@ -36,13 +36,13 @@ public class AdminController : Controller
 
         return IsAdmin() ? View(posts) : Redirect(Config["route_admin"]);
     }
-    [HttpGet]
-    public IActionResult FindPost(int id) => id >= 0 ? Redirect(Config["route_admin-edit-post"].Replace("{id?}", id.ToString())) : Redirect(Config["route_admin-posts"]);
+    public IActionResult FindPost(int id) => id >= 0 ? Redirect(Config["route_admin-edit-post"].Replace("{id:int?}", id.ToString())) : Redirect(Config["route_admin-posts"]);
     public IActionResult Categories() => IsAdmin() ? View(CategoriesModel.GetCats()) : Redirect(Config["route_admin"]);
     //---------------------------------------------------
     // тут пользователь идет по пути с возможностью добавления
     // айди. если айди есть - форма заполняется данными во вьюшке. Если нет - приходит пустая форма для 
     // заполнения. - добавление нового поста
+    public IActionResult FindCategory(int id) => id >= 0 ? Redirect(Config["route_admin-edit-category"].Replace("{id:int?}", id.ToString())) : Redirect(Config["route_admin-categories"]);
     public IActionResult EditPost(int? id) => IsAdmin() ? View(id == null || PostsModel.GetPost(id) == null ? new CPost() : PostsModel.GetPost(id)) : Redirect(Config["route_admin"]);
     // тут будет только после пост запроса отрабатывать этот метод. т.е. уже принимать заполненную
     // форму с новым постом, который добавится в базу данных. Если присутствует айди - 
@@ -58,6 +58,16 @@ public class AdminController : Controller
         else PostsModel.Edit(post, id.Value);
 
         return Redirect(Config["route_admin-posts"]);
+    }
+    public IActionResult DeletePost(int? id)
+    {
+        if (IsAdmin())
+        {
+            PostsModel.DeletePost(id.Value);
+
+            return Redirect(Config["route_admin-posts"]);
+        }
+        return Redirect(Config["route_admin"]);
     }
     // тут пользователь идет по пути с возможностью добавления
     // айди. если айди есть - форма заполняется данными во вьюшке. Если нет - приходит пустая форма для 
@@ -76,5 +86,15 @@ public class AdminController : Controller
         else CategoriesModel.Edit(category, id.Value);
 
         return Redirect(Config["route_admin-categories"]); ;
+    }
+    public IActionResult DeleteCategory(int? id)
+    {
+        if (IsAdmin())
+        {
+            CategoriesModel.DeleteCat(id.Value);
+
+            return Redirect(Config["route_admin-categories"]);
+        }
+        return Redirect(Config["route_admin"]);
     }
 }

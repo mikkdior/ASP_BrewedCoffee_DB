@@ -5,25 +5,44 @@
     ViewData["Title"] = "Admin Edit Category Page";
 }
 <div class="admin-content">
-    <ul>
+    <ul class="admin-menu">
+        <li>
+            <a href="@Config["route_admin-posts"]">Show Posts</a>
+        </li>
         <li>
             <a href="@Config["route_admin-categories"]"> Show Categories</a>
         </li>
         <li>
-            <a href="@Config["route_admin-posts"]">Show Posts</a>
+            <a href='#'>Change something</a>
+        </li>
+        <li>
+            <a href='#'>Enter the Matrix</a>
+        </li>
+        <li>
+            <a href='@Config["route_logout"]'>Log out</a>
         </li>
     </ul>
-    <h1>Categories</h1>
-    <ul>
+    <div class="open-post-id">
+        <span>Open category by id:</span> 
+        <form method="get" action="@Config["route_admin-find-category"]">
+            <input type="number" name="id">
+            <input type="submit" value="Open">
+            <input type="hidden" name="action" value="open_post_id">
+        </form>
+    </div>
+    <h1 class="admin-title">Categories</h1>
+    <ul class="admin-categories-list">
         @foreach (CCategory cat in Model)
         {
-            <li>
-                <span>@cat.Id - </span>
-                <a class="admin-list-item" href="@Config["route_admin-edit-category"].Replace("{id?}", @cat.Id.ToString())">@cat.Title</a>
+            <li class="admin-list-item">
+                <div>
+                    <a class="change-list-element" href="@Config["route_admin-edit-category"].Replace("{id:int?}", cat.Id.ToString())">edit</a>
+                    <span>@cat.Id : @cat.Title</span>
+                </div>
+                <a class="change-list-element del" href="@Config["route_admin-delete-category"].Replace("{id:int}", cat.Id.ToString())">del</a>
             </li>
         }
     </ul>
-    <a href="@Config["route_admin-edit-category"].Replace("{id?}", string.Empty)">Add new</a>
-    <a href='@Config["route_logout"]'><input type="button" value="Log Out"></a>
-</div>>
+    <a class="add-cat-button" href="@Config["route_admin-edit-category"].Replace("{id:int?}", string.Empty)">Add new</a>
+</div>
 

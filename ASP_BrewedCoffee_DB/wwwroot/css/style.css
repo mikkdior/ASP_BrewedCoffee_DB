@@ -362,7 +362,6 @@ hr {
 .next {
 	display: inline-block;
 	padding: 0px;
-	padding: 0 0 0 35px;
 	right: 0;
 	line-height: 50px;
 	margin-top: 2px;
@@ -377,7 +376,6 @@ hr {
 .prev {
 	display: inline-block;
 	padding: 0px;
-	padding: 0 35px 0 0;
 	left: 0;
 	line-height: 50px;
 	margin-top: 2px;
@@ -581,6 +579,9 @@ hr {
 	text-align: center;
 	margin-bottom: 20px;
 }
+.sign-in-button {
+	background: linear-gradient(#3B3513, transparent)
+}
 .sign-in-button:hover {
 	color: black;
 }
@@ -593,12 +594,16 @@ hr {
 	margin: 5px 0;
 	outline: none;
 }
-.sign-in-form input[type="text"]:focus, input[type="password"]:focus {
+.sign-in-form input[type="text"]:focus{
 	border: 2px solid lightgrey;
 	box-shadow: none;
 }
-.user-input:focus .user {
+.user-input:focus{
 	background: white !important;
+}
+.sign-in-form input[type="password"]:focus {
+	border: 2px solid lightgrey;
+	box-shadow: none;
 }
 .sign-in-form input[type="text"] {
 	background: transparent;
@@ -620,7 +625,7 @@ hr {
 	margin-bottom: 5px;
 }
 .sign-in-form input[type="submit"] {
-	background: linear-gradient( 45deg, grey, transparent);
+	background: linear-gradient( 45deg, #4E4B29, transparent);
 	border: none;
 	color: black;
 	text-align: center;
@@ -632,11 +637,11 @@ hr {
 	margin-bottom: 10px;
 	font-size: 13px;
 }
-.sign-in-form input[type="submit"]:hover {
-	background: grey;
-	color: #EBEBEB;
-	transition: all 1000ms;
-}
+	.sign-in-form input[type="submit"]:hover {
+		background: #4E4B29;
+		color: #EBEBEB;
+		transition: all 1000ms;
+	}
 .page-404 {
 	display: block;
 	text-align: center;
@@ -689,11 +694,11 @@ hr {
 	font-weight: bolder;
 	padding: 10px;
 }
-.admin-posts {
+.admin-title{
 	text-align: center;
 	color: #212413;
 }
-.admin-posts-list {
+.admin-posts-list, .admin-categories-list {
 	list-style: none;
 	padding: 0;
 }
@@ -723,7 +728,7 @@ hr {
 	font-size: 15px;
 	color: darkred;
 }
-.add-post-button {
+.add-post-button, .add-cat-button, .admin-update-button, .admin-delete-big-button {
 	width: 100%;
 	display: block;
 	border: 1px solid grey;
@@ -735,8 +740,18 @@ hr {
 	margin: auto;
 	line-height: 3.1;
 	margin-top: 30px;
+	cursor:pointer;
 }
-.add-post-button:hover{
+.admin-delete-big-button {
+	background: brown;
+	color: white;
+	cursor: pointer;
+	margin-top: 10px;
+}
+.admin-delete-big-button:hover {
+	background: red;
+}
+.add-post-button:hover, .add-cat-button:hover, .admin-update-button:hover {
 	background: seagreen;
 }
 .open-post-id {
@@ -751,4 +766,53 @@ hr {
 }
 .open-post-id input[type="number"]{
 	width: 70px;
+}
+.change-list-element{
+	width: 25px;
+}
+.del {
+	height: 17px;
+	width: 24px;
+	line-height: 1.3;
+}
+.admin-posts-list div {
+	width: 790px;
+}
+#arrow {
+	font-family: cursive;
+	line-height: 1.5;
+	font-weight: bolder;
+}
+#arrow:hover {
+	color: darkkhaki;
+}
+.edit-post-title input {
+	width: 100%;
+}
+.edit-post-content textarea {
+	width: 100%;
+	height: 200px;
+}
+.edit-post-author input {
+	width: 198px;
+	margin-left: 38px;
+}
+.edit-post-cat-id select {
+	margin-left: 25px;
+	width: 205px;
+}
+.edit-post-date{
+
+}
+.admin-back-button {
+	border: 1px solid black;
+	margin-top: 19px;
+	position: absolute;
+	padding: 15px;
+	text-decoration: none;
+	background: cornsilk;
+}
+.or {
+	text-align: center;
+	display: block;
 }

@@ -1,16 +1,17 @@
 ﻿@model bool
+@inject IConfiguration Config
 <div class="admin-content">
-    <h1 class="sign-in">Please sign in as administrator</h1>
+    <h1 class="sign-in">@Config["option_SignInAdmin"]</h1>
     <div class="sign-in-form">
         <form method="post" action="#">
             <input class="user-input" type="text" name="AdminLogin" id="name" placeholder="login"  />
-            <input type="password" name="AdminPass" id="name" placeholder="password" />
+            <input class="user-input" type="password" name="AdminPass" id="name" placeholder="password" />
             <input class="sign-in-button" type="submit" value="Sign in" />
             <input type="hidden" value="log_in" name="action">
         </form>  
     </div>
     @if (!Model)
     {
-        <span class="incorrect-pass">Incorrect password! Please, try again.</span>
+        <span class="incorrect-pass">@Config["option_IncorrectPassMessage"]</span>
     }
 </div>

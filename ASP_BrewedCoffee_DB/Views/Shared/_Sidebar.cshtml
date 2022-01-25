@@ -1,9 +1,9 @@
 ﻿@using ASP_BrewedCoffee_DB.Models;
-@inject CRoutesService routes_service
+@inject IConfiguration Config
 <div id="sidebar">
     <ul>
         <li>
-            <h2 id="favorites"><a class="favorite-sidebar" href="@routes_service.GetRoute("favorites").Template">Favorite posts</a></h2>
+            <h2 id="favorites"><a class="favorite-sidebar" href="@Config["route_favorites"]">@Config["option_FavoritePosts"]</a></h2>
         </li>
         <li>
             @await Html.PartialAsync("_SidebarMenu", Context.Items["CategoriesMenu"])

@@ -12,6 +12,7 @@
                 string[] parts = line.Split(';');
                 Data.Add(parts[0], line.Substring(parts[0].Length + 1));
             }
+            Data.Add("path_css-file", CHelper.GetPathFromConfig("css_data_path"));
         }
     }
     public class CSVConfigurationSource : IConfigurationSource

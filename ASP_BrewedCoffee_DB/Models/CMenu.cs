@@ -76,11 +76,11 @@ public class CBuildArchiveStrategy : IBuildMenuStrategy
     }
     public int GetCount(CMenuItem menu_item, IEnumerable<CPost> posts) => 
         (from post in posts
-        where post.CreatedDate.Year == DateTime.Now.Year
-        where ((CConfService.EMonths)post.CreatedDate.Month).ToString() == menu_item.Title 
+         where post.CreatedDate > DateTime.Now.AddYears(-1)
+         where ((CConfService.EMonths)post.CreatedDate.Month).ToString() == menu_item.Title 
         select post).Count();
     public int GetOldsCount(IEnumerable<CPost> posts) =>
         (from post in posts
-         where post.CreatedDate.Year < DateTime.Now.Year
+         where post.CreatedDate < DateTime.Now.AddYears(-1)
          select post).Count();
 }
