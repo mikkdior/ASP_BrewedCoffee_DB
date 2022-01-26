@@ -4,42 +4,59 @@
     ViewData["Title"] = "Admin Categories Page";
 }
 <div class="admin-content">
-    <h1>Edit category</h1>
-    <form method="post" action="#">
+    <ul class="admin-menu">
+        <li>
+            <a href="@Config["route_admin-posts"]">Show Posts</a>
+        </li>
+        <li>
+            <a href="@Config["route_admin-categories"]"> Show Categories</a>
+        </li>
+        <li>
+            <a href='#'>Change something</a>
+        </li>
+        <li>
+            <a href='#'>Enter the Matrix</a>
+        </li>
+        <li>
+            <a href='@Config["route_logout"]'>Log out</a>
+        </li>
+    </ul>
+    <a class="admin-back-button" href='@Config["route_admin-categories"]'>Cancel</a>
+    @if (Model.Title == null)
+    {
+        <h1 class="admin-title">Create category</h1>
+    }
+    else
+    {
+        <h1 class="admin-title">Edit category</h1>
+    }
+    <form class="edit-cat-form" method="post" action="#">
         <p>
-            <label>
+            <label class="edit-category-title">
                 <span>Title: </span>
                 <input type="text" name="Title" value="@Model.Title"/>
             </label>
         </p>
         <p>
             <label>
-                <span>Slug: </span>
+                <span class="edit-category-slug">Slug: </span>
                 <input type="text" name="Slug" value="@Model.Slug"/>
             </label>
         </p>
+        
         @if(Model.Title != default)
         {
-            <p>
-                <label>
-                    <input type="submit" name="action" value="Update" />
-                </label>
-            </p>
-            <p>
-                <label>
-                    <input type="submit" name="action" value="Delete" />
-                </label>
-            </p>
+            <label>
+                <input class="admin-update-button" type="submit" name="action" value="Update" />
+            </label>
+            <span class="or">- or - </span>
+            <a class="admin-delete-big-button" href="@Config["route_admin-delete-category"].Replace("{id:int}", @Model.Id.ToString())">Delete</a>
         }
         else
         {
-            <p>
-                <label>
-                    <input type="submit" name="action" value="Create" />
-                </label>
-            </p>
+            <label>
+                <input class="add-category-button" type="submit" name="action" value="Create" />
+            </label>
         }
     </form>
-    <a href='@Config["route_admin-categories"]'><input type="button" value="Cancel"></a>
-    <a href='@Config["route_logout"]'><input type="button" value="Log Out"></a>
 </div>

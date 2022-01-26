@@ -22,7 +22,14 @@
         </li>
     </ul>
     <a class="admin-back-button" href='@Config["route_admin-posts"]'>Cancel</a>
-    <h1 class="admin-title">Edit post</h1>
+    @if (Model.Title == null)
+    {
+        <h1 class="admin-title">Create post</h1>
+    }
+    else
+    {
+        <h1 class="admin-title">Edit post</h1>
+    }
     <form method="post" action="#">
         <p>
             <label class="edit-post-title">

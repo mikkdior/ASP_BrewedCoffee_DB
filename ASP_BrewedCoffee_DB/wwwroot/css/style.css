@@ -728,7 +728,7 @@ hr {
 	font-size: 15px;
 	color: darkred;
 }
-.add-post-button, .add-cat-button, .admin-update-button, .admin-delete-big-button {
+.add-post-button, .add-cat-button, .admin-update-button, .admin-delete-big-button, .add-category-button {
 	width: 100%;
 	display: block;
 	border: 1px solid grey;
@@ -740,7 +740,7 @@ hr {
 	margin: auto;
 	line-height: 3.1;
 	margin-top: 30px;
-	cursor:pointer;
+	cursor: pointer;
 }
 .admin-delete-big-button {
 	background: brown;
@@ -751,7 +751,7 @@ hr {
 .admin-delete-big-button:hover {
 	background: red;
 }
-.add-post-button:hover, .add-cat-button:hover, .admin-update-button:hover {
+.add-post-button:hover, .add-cat-button:hover, .admin-update-button:hover, .add-category-button:hover {
 	background: seagreen;
 }
 .open-post-id {
@@ -806,7 +806,7 @@ hr {
 }
 .admin-back-button {
 	border: 1px solid black;
-	margin-top: 19px;
+	margin-top: 22px;
 	position: absolute;
 	padding: 15px;
 	text-decoration: none;
@@ -815,4 +815,8 @@ hr {
 .or {
 	text-align: center;
 	display: block;
+	margin-top: 10px;
+}
+.edit-cat-form p{
+	text-align: center;
 }
