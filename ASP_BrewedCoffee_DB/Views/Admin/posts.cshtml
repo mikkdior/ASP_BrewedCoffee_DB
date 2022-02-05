@@ -1,5 +1,4 @@
-﻿@using ASP_BrewedCoffee_DB.Models
-@model IEnumerable<CPost>
+﻿@model CAdminPostsViewModel
 @inject IConfiguration Config
 @{
     ViewData["Title"] = "Admin Posts Page";
@@ -32,7 +31,7 @@
     </div>
     <h1 class="admin-title">Posts</h1>
     <ul class="admin-posts-list">
-        @foreach (CPost post in Model)
+        @foreach (CPost post in Model.CurrentPosts)
         {
             <li class="admin-list-item">
                 <div>
@@ -45,6 +44,6 @@
         }
     </ul>
     <a class="add-post-button" href="@Config["route_admin-edit-post"].Replace("{id:int?}", string.Empty)">Add new</a>
-    @await Html.PartialAsync("_Pagination")
+    @await Html.PartialAsync("_Pagination", Model)
 </div>
     

@@ -29,12 +29,14 @@ public class AdminController : Controller
     public IActionResult Posts(int page = 1) 
     {
         IEnumerable<CPost> all_posts = PostsModel.GetPosts();
-        IEnumerable<CPost> posts = PostsModel.GetCurrentPosts(all_posts, page, int.Parse(Config["option_AdminPostsPerPage"]));
-        HttpContext.Items.Add("AllFilteredPostsNum", all_posts.Count());
-        HttpContext.Items.Add("PostsPerPage", Config["option_AdminPostsPerPage"]); 
-        HttpContext.Items.Add("Page", page.ToString());
 
-        return IsAdmin() ? View(posts) : Redirect(Config["route_admin"]);
+        return IsAdmin() ? View(new CAdminPostsViewModel()
+            {
+                AllFilteredPostsNum = all_posts.Count(),
+                PostsPerPage = int.Parse(Config["option_AdminPostsPerPage"]),
+                Page = page,
+                CurrentPosts = PostsModel.GetCurrentPosts(all_posts, page, int.Parse(Config["option_AdminPostsPerPage"]))
+            }) : Redirect(Config["route_admin"]);
     }
     public IActionResult FindPost(int id) => id >= 0 ? Redirect(Config["route_admin-edit-post"].Replace("{id:int?}", id.ToString())) : Redirect(Config["route_admin-posts"]);
     public IActionResult Categories() => IsAdmin() ? View(CategoriesModel.GetCats()) : Redirect(Config["route_admin"]);

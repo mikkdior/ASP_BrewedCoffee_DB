@@ -1,5 +1,6 @@
-﻿@{
+﻿@model CHomeViewModel
+@{
     ViewData["Title"] = "Home Page";
 }
-@await Html.PartialAsync("_HomeContent")
-@await Html.PartialAsync("_Sidebar")
+@await Html.PartialAsync("_Content", Model)
+@await Html.PartialAsync("_Sidebar", Model)

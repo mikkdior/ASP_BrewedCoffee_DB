@@ -4,7 +4,7 @@ namespace ASP_BrewedCoffee_DB.Models
 {
     public class CPagination : CPaginationData
     {
-        public CPagination(HttpContext Context) { this.Context = Context; }
+        public CPagination(IViewModel ViewModel) { this.ViewModel = ViewModel; }
         public List<CPaginationItem>? GetPages(string page_key, string current_class_name, string uncurrent_class_name, string last_class_name, string dotted_class_name, string dotted)
         {
             List<CPaginationItem> items = new List<CPaginationItem>();
@@ -55,10 +55,10 @@ namespace ASP_BrewedCoffee_DB.Models
     }
     public class CPaginationData
     {
-        protected HttpContext Context;
-        public int CurrentPage { get => int.Parse(Context.Items["Page"].ToString()); }
-        public int AllPostsCount { get => int.Parse(Context.Items["AllFilteredPostsNum"].ToString()); }
-        public int PostsPerPage { get => int.Parse(Context.Items["PostsPerPage"].ToString()); }
+        protected IViewModel ViewModel;
+        public int CurrentPage { get => ViewModel.Page; }
+        public int AllPostsCount { get => ViewModel.AllFilteredPostsNum; }
+        public int PostsPerPage { get => ViewModel.PostsPerPage; }
         public int MaxPages { get => (int)Math.Ceiling(decimal.Divide(AllPostsCount, PostsPerPage)); }
         public int DottForward { get => (int)Math.Ceiling(decimal.Divide(MaxPages + CurrentPage, 2)); }
         public int DottBackward { get => (int)Math.Ceiling(decimal.Divide(1 + CurrentPage, 2)); }

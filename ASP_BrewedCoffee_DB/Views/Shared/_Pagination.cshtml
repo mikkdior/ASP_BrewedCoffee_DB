@@ -1,4 +1,5 @@
-﻿@{ var pagination = new CPagination(Context); }
+﻿@model IViewModel
+@{ var pagination = new CPagination(Model); }
 @if (pagination.MaxPages > 1)
 {
     <div class="pagination">

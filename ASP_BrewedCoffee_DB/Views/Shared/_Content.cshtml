@@ -1,12 +1,8 @@
-﻿@using ASP_BrewedCoffee_DB.Models;
-@{ 
-    int posts_count = int.Parse(Context.Items["AllFilteredPostsNum"].ToString());
-    int posts_per_page = int.Parse(Context.Items["PostsPerPage"].ToString());
-}
+﻿@model CHomeViewModel
 <div id="content">
-    @await Html.PartialAsync("_Sketches")
-    @if (posts_count > posts_per_page)
+    @await Html.PartialAsync("_Sketches", Model.CurrentPosts)
+    @if (Model.AllFilteredPostsNum > Model.PostsPerPage)
     {
-        @await Html.PartialAsync("_Pagination")
+        @await Html.PartialAsync("_Pagination", Model)
     }
 </div>

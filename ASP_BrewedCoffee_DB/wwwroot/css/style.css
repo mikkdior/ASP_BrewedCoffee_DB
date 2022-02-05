@@ -669,14 +669,14 @@ hr {
 }
 .admin-menu {
 	display: flex;
-	list-style: none;
-	background: radial-gradient(#2C2800, transparent);
-	width: 95.3%;
-	padding: 0;
-	margin: 0;
-	padding: 0 20px;
-	justify-content: space-around;
-	height: 30px;
+    list-style: none;
+    background: radial-gradient(#2C2800, transparent);
+    width: 100%;
+    margin: 0;
+    padding: 0 20px;
+    justify-content: space-around;
+    height: 30px;
+    margin-left: -20px;
 }
 .admin-menu li {
 	color: #EBEBEB;

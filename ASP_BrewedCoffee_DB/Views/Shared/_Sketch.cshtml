@@ -1,17 +1,16 @@
 ﻿<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-@using ASP_BrewedCoffee_DB.Models;
+@model CPost
 @{
-    CPost post = Model;
     var favorites = (List<string>)Context.Items["favorites"];
     var likes = (List<string>)Context.Items["likes"];
 }
 <div class="post">
-    <h2 class="title">@post.Title</h2>
+    <h2 class="title">@Model.Title</h2>
     <form method="post" action="#">
-        @if (likes.Contains(@post.Id.ToString()))
+        @if (likes.Contains(@Model.Id.ToString()))
         {
             <button class="btn btn-like-pressed" type="submit">
-                <span class="count-likes">@post.Likes</span>
+                <span class="count-likes">@Model.Likes</span>
                 <span class="btn-icon btn-icon-default btn-icon-like-pressed">
                     <span class="fa fa-heart"></span>
                 </span>
@@ -33,10 +32,10 @@
             </button>
             <input type="hidden" name="action" value="like">
         }
-        <input type="hidden" name="post_id" value="@post.Id">
+        <input type="hidden" name="post_id" value="@Model.Id">
     </form>
     <form method="post" action="#">
-        @if (favorites.Contains(@post.Id.ToString()))
+        @if (favorites.Contains(@Model.Id.ToString()))
         {
             <input class="to-favorites in-favorites" type="submit" value="favorite">
         }
@@ -44,11 +43,11 @@
         {
             <input class="to-favorites" type="submit" value="to favorites">
         }
-        <input type="hidden" name="post_id" value="@post.Id">
+        <input type="hidden" name="post_id" value="@Model.Id">
         <input type="hidden" name="action" value="favorite">
     </form>
-    <p class="byline"><small>Posted on @post.CreatedDate.ToShortDateString() by @post.Author</small></p>
+    <p class="byline"><small>Posted on @Model.CreatedDate.ToShortDateString() by @Model.Author</small></p>
     <div class="entry">
-        <p>@post.Content</p>
+        <p>@Model.Content</p>
     </div>
 </div>

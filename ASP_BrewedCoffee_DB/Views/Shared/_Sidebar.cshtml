@@ -1,15 +1,15 @@
-﻿@using ASP_BrewedCoffee_DB.Models;
-@inject IConfiguration Config
+﻿@inject IConfiguration Config
+@model CHomeViewModel
 <div id="sidebar">
     <ul>
         <li>
             <h2 id="favorites"><a class="favorite-sidebar" href="@Config["route_favorites"]">@Config["option_FavoritePosts"]</a></h2>
         </li>
         <li>
-            @await Html.PartialAsync("_SidebarMenu", Context.Items["CategoriesMenu"])
+            @await Html.PartialAsync("_SidebarMenu", Model.CategoriesMenu)
         </li>
         <li>
-            @await Html.PartialAsync("_SidebarMenu", Context.Items["ArchiveMenu"])
+            @await Html.PartialAsync("_SidebarMenu", Model.ArchiveMenu)
         </li>
     </ul>
 </div>

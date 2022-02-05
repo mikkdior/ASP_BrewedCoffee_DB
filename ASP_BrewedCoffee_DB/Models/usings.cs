@@ -17,3 +17,4 @@ global using Microsoft.AspNetCore.Routing.Constraints;
 global using System.Web;
 global using ASP_BrewedCoffee_DB.Models;
 global using ASP_BrewedCoffee_DB.Services;
+global using ASP_BrewedCoffee_DB.ViewModels;
