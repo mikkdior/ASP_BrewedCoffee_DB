@@ -12,7 +12,7 @@
             <a href="@Config["route_admin-categories"]"> Show Categories</a>
         </li>
         <li>
-            <a href='#'>Change something</a>
+            <a href='/'>Return to Main</a>
         </li>
         <li>
             <a href='#'>Enter the Matrix</a>
@@ -23,10 +23,9 @@
     </ul>
     <div class="open-post-id">
         <span>Open post by id:</span> 
-        <form method="get" action="@Config["route_admin-find-post"]">
+        <form method="get" action="@Config["route_admin-edit-post"].Replace("{id:int?}", string.Empty)">
             <input type="number" name="id">
             <input type="submit" value="Open">
-            <input type="hidden" name="action" value="open_post_id">
         </form>
     </div>
     <h1 class="admin-title">Posts</h1>

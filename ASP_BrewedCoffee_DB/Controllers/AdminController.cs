@@ -38,14 +38,22 @@ public class AdminController : Controller
                 CurrentPosts = PostsModel.GetCurrentPosts(all_posts, page, int.Parse(Config["option_AdminPostsPerPage"]))
             }) : Redirect(Config["route_admin"]);
     }
-    public IActionResult FindPost(int id) => id >= 0 ? Redirect(Config["route_admin-edit-post"].Replace("{id:int?}", id.ToString())) : Redirect(Config["route_admin-posts"]);
     public IActionResult Categories() => IsAdmin() ? View(CategoriesModel.GetCats()) : Redirect(Config["route_admin"]);
     //---------------------------------------------------
     // тут пользователь идет по пути с возможностью добавления
     // айди. если айди есть - форма заполняется данными во вьюшке. Если нет - приходит пустая форма для 
     // заполнения. - добавление нового поста
-    public IActionResult FindCategory(int id) => id >= 0 ? Redirect(Config["route_admin-edit-category"].Replace("{id:int?}", id.ToString())) : Redirect(Config["route_admin-categories"]);
-    public IActionResult EditPost(int? id) => IsAdmin() ? View(id == null || PostsModel.GetPost(id) == null ? new CPost() : PostsModel.GetPost(id)) : Redirect(Config["route_admin"]);
+    public IActionResult EditPost(int? id)
+    {
+        if (!IsAdmin()) return Redirect(Config["route_admin"]);
+        if (id >= 0)
+        {
+            CPost post = PostsModel.GetPost(id);
+            return View(post == null ? new CPost() : post);
+        } 
+            
+        return Redirect(Config["route_admin-posts"]);
+    } 
     // тут будет только после пост запроса отрабатывать этот метод. т.е. уже принимать заполненную
     // форму с новым постом, который добавится в базу данных. Если присутствует айди - 
     // в базе данных меняются даные поста по этому айдишнику.
@@ -74,7 +82,18 @@ public class AdminController : Controller
     // тут пользователь идет по пути с возможностью добавления
     // айди. если айди есть - форма заполняется данными во вьюшке. Если нет - приходит пустая форма для 
     // заполнения. - добавление новой категории
-    public IActionResult EditCategory(int? id) => IsAdmin() ? View(id == null ? new CCategory() : CategoriesModel.GetCat(id)) : Redirect(Config["route_admin"]);
+    public IActionResult EditCategory(int? id) 
+    {
+        if (!IsAdmin()) return Redirect(Config["route_admin"]);
+        if (id >= 0)
+        {
+            CCategory cat = CategoriesModel.GetCat(id);
+            return View(cat == null ? new CCategory() : cat);
+        }
+
+        return Redirect(Config["route_admin-posts"]);
+
+    } 
     // тут будет только после пост запроса отрабатывать этот метод. т.е. уже принимать заполненную
     // форму с новой категорией, которая добавится в базу данных. Если присутствует айди - 
     // в базе данных меняются даные категории по этому айдишнику.
