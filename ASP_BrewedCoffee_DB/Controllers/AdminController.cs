@@ -46,13 +46,11 @@ public class AdminController : Controller
     public IActionResult EditPost(int? id)
     {
         if (!IsAdmin()) return Redirect(Config["route_admin"]);
-        if (id >= 0)
-        {
-            CPost post = PostsModel.GetPost(id);
-            return View(post == null ? new CPost() : post);
-        } 
-            
-        return Redirect(Config["route_admin-posts"]);
+        if (id == null) return View(new CPost());
+        if (id < 0) Redirect(Config["route_admin-posts"]);
+
+        CPost post = PostsModel.GetPost(id);
+        return View(post == null ? new CPost() : post);
     } 
     // тут будет только после пост запроса отрабатывать этот метод. т.е. уже принимать заполненную
     // форму с новым постом, который добавится в базу данных. Если присутствует айди - 
@@ -85,14 +83,11 @@ public class AdminController : Controller
     public IActionResult EditCategory(int? id) 
     {
         if (!IsAdmin()) return Redirect(Config["route_admin"]);
-        if (id >= 0)
-        {
-            CCategory cat = CategoriesModel.GetCat(id);
-            return View(cat == null ? new CCategory() : cat);
-        }
+        if (id == null) return View(new CCategory());
+        if (id < 0) Redirect(Config["route_admin-posts"]);
 
-        return Redirect(Config["route_admin-posts"]);
-
+        CCategory cat = CategoriesModel.GetCat(id);
+        return View(cat == null ? new CCategory() : cat);
     } 
     // тут будет только после пост запроса отрабатывать этот метод. т.е. уже принимать заполненную
     // форму с новой категорией, которая добавится в базу данных. Если присутствует айди - 

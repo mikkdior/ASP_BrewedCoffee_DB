@@ -41,8 +41,8 @@ public class CBuildCategoryStrategy : IBuildMenuStrategy
     }
     public int GetCount(CMenuItem menu_item, IEnumerable<CPost> posts) =>
         (from post in posts
-        where post.CategoryId == menu_item.Id
-        select post).Count();
+            where post.CategoryId == menu_item.Id
+            select post).Count();
 }
 public class CBuildArchiveStrategy : IBuildMenuStrategy
 {
@@ -74,13 +74,14 @@ public class CBuildArchiveStrategy : IBuildMenuStrategy
 
         return menu;
     }
-    public int GetCount(CMenuItem menu_item, IEnumerable<CPost> posts) => 
+    public int GetCount(CMenuItem menu_item, IEnumerable<CPost> posts) =>
         (from post in posts
-         where post.CreatedDate > DateTime.Now.AddYears(-1)
-         where ((CConfService.EMonths)post.CreatedDate.Month).ToString() == menu_item.Title 
-        select post).Count();
+            where post.CreatedDate > DateTime.Now.AddYears(-1)
+            where ((CConfService.EMonths)post.CreatedDate.Month).ToString() == menu_item.Title
+            where post.CreatedDate.Month == DateTime.Now.Month ? post.CreatedDate.Year == DateTime.Now.Year : true
+            select post).Count();
     public int GetOldsCount(IEnumerable<CPost> posts) =>
         (from post in posts
-         where post.CreatedDate < DateTime.Now.AddYears(-1)
-         select post).Count();
+            where post.CreatedDate < DateTime.Now.AddYears(-1).AddMonths(1).AddDays(-(DateTime.Now.Day - 1)).Date
+            select post).Count();
 }

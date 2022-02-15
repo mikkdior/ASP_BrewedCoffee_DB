@@ -109,6 +109,7 @@ hr {
 	margin-top: -100px;
 	margin-bottom: 30px;
 	padding: 30px 20px;
+	padding-bottom: 0;
 	background: #EBEBEB;
 	border: 10px solid #FFFFFF;
 }
@@ -128,6 +129,7 @@ hr {
 }
 
 .title {
+	line-break: anywhere;
 	margin: 0;
 	padding-bottom: 5px;
 	padding-left: 30px;
@@ -349,6 +351,7 @@ hr {
 	align-items: center;
 	justify-content: center;
 	margin-top: 35px;
+	padding-bottom: 30px;
 }
 .pagination > a {
 	font-size: 21px;
