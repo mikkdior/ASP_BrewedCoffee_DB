@@ -1,0 +1,14 @@
+﻿@model CPost
+@{
+    var likes = (List<string>)Context.Items["likes"];
+}
+<div class="like-action" post-id="@Model.Id">
+    @if (likes.Contains(@Model.Id.ToString()))
+    {
+        @await Html.PartialAsync("_Dislike", Model.Likes)
+    }
+    else
+    {
+        @await Html.PartialAsync("_Like")
+    }
+</div>

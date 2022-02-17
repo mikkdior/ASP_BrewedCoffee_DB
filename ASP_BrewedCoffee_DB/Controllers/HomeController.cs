@@ -1,4 +1,6 @@
-﻿namespace ASP_BrewedCoffee_DB.Controllers;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
+namespace ASP_BrewedCoffee_DB.Controllers;
 public class HomeController : Controller
 {
     public CPostsService PostsService;
@@ -70,5 +72,39 @@ public class HomeController : Controller
             AllFilteredPostsNum = all_filtered_posts.Count()
         });
     }
+    [HttpGet]
+    public IActionResult LikeAction(string postid, string acttype)
+    {
+        if (postid == null || acttype == null) return Content("");
+        CPost? post = PostsService.SetLikes(postid, acttype);
+        if (post == null) return Content("");
+        CHelper.RegSessionData("likes", HttpContext, postid);
+
+        return Content(post.Likes.ToString());
+    }
+    [HttpGet]
+    public IActionResult FavoriteAction(string postid)
+    {
+        if (postid == null) return Content("");
+        CHelper.RegSessionData("favorites", HttpContext, postid);
+
+        return Content("");
+    }
+    [HttpGet]
+    public IActionResult HideAction(string title)
+    {
+        if (title == null) return Content("");
+        CHelper.RegSessionData("hidden", HttpContext, title);
+
+        return Content("");
+    }
+    [HttpGet]
+    public IActionResult UseSessionData(string key, string value = "")
+    {
+        CHelper.RegSessionData(key, HttpContext, value);
+
+        return Content(HttpContext.Session.GetString(key));
+    }
+
     public IActionResult Page404() => View();
 }

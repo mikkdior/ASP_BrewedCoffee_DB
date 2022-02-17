@@ -228,23 +228,38 @@ hr {
 	padding-top: 50px;
 	color: #827736;
 }
-
 #sidebar ul {
-	margin: 0;
-	padding: 0 0 20px 0;
 	list-style: none;
 }
 
+.sidebar-menu-list {
+	margin: 0;
+	list-style: none;
+	opacity: 100;
+	overflow: hidden;
+	transition: all 500ms;
+	margin-bottom: 20px;
+}
+	
+.hidden-list {
+	opacity: 0;
+	height: 0;
+	margin-bottom: 0;
+	transition: all 500ms;
+}
 #sidebar li {
 }
 
 #sidebar li ul {
-	padding: 0px 21px 20px 10px;
+	padding: 0px 21px 0px 20px;
 }
 
 #sidebar li li {
 	border-bottom: 1px dotted #615929;
 	padding: 5px 0px;
+}
+#sidebar li:last-child {
+	border-bottom: 0;
 }
 
 #sidebar h2 {
@@ -422,7 +437,7 @@ hr {
 	padding: 50px;
 	color: black;
 }
-.to-favorites {
+.favorite-btn {
 	float: right;
 	top: 5px;
 	right: 0;
@@ -435,10 +450,10 @@ hr {
 	border: 1px solid darkgrey;
 	height: 18.5px;
 }
-.to-favorites:hover {
+
+.favorite-btn:hover {
 	box-shadow: 0px 0px 10px #3B3513;
 	font-size: 12.5px;
-	transition: 100ms;
 	border: 1px solid #3B3513;
 	color: black;
 }
@@ -492,9 +507,8 @@ hr {
 	--white: #fff;
 	--black: #000;
 }
-.btn {
+.btn-likes-action {
 	border-radius: 10px;
-	line-height: 1.3;
 	padding: 1px 1px;
 	width: 20px;
 	height: 18.5px;
@@ -505,22 +519,28 @@ hr {
 	overflow: hidden;
 	position: absolute;
 	display: flex;
-	justify-content: center;
+	justify-content: flex-end;
 }
 
-.btn:hover {
+.btn-likes-action:hover {
 	border-color: darkred;
 	box-shadow: 0px 0px 10px #3b3513;
 	line-height: 1.2;
 	border-radius: 5px;
-	transform: scale(1.1);
 }
 
 .btn-like {
-	transition: 0.1s cubic-bezier(.21,.04,.26,.99);
+	transition: 0.3s cubic-bezier(.21,.04,.26,.99);
 	position: absolute;
 	right: 80px;
 	top: 5px;
+	padding-right: 2px;
+	padding-top: 1.5px;
+}
+.btn-like:hover {
+	transition: all 200ms;
+	transform: scale(1.05);
+	padding-top: 1px;
 }
 .btn-like-pressed {
 	transition: 0.1s cubic-bezier(.21,.04,.26,.99);
@@ -529,6 +549,7 @@ hr {
 	top: 5px;
 	width: 50px;
 	background-color: antiquewhite;
+	padding-right: 3px;
 }
 
 .btn-like.liked {
@@ -555,7 +576,7 @@ hr {
 .btn:not(.liked).btn-icon-liked {
 	transform: rotate(-90deg)
 }
-.liked .btn--icon-default,
+.liked .btn-icon-default,
 .btn-icon-liked {
 	opacity: 0;
 	color: #fff;

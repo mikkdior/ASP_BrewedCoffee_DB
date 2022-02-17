@@ -1,16 +1,42 @@
 ﻿@model CMenu
-<h2>@Model.Title</h2>
-<ul>
-    @foreach (CMenuItem menu_item in Model)
-    {
-        @if (menu_item.Count > 0)
-        {
-            <li><a href="@menu_item.Url">@menu_item.Title</a> 
-                @if (Model.ShowCount)
+@{
+    var hidden_menus = (List<string>)Context.Items["hidden"];
+}
+<div class="sidebar-menu">
+    <a href="#" class="sidebar-menu-link "><h2>@Model.Title</h2></a>
+    @if (hidden_menus != null && hidden_menus.Contains(Model.Title)){
+        <ul class="sidebar-menu-list hidden-list" hide-action="show">
+            @foreach (CMenuItem menu_item in Model)
+            {
+                @if (menu_item.Count > 0)
                 {
-                    <span>(@menu_item.Count)</span>
+                    <li><a href="@menu_item.Url">@menu_item.Title</a> 
+                        @if (Model.ShowCount)
+                        {
+                            <span>(@menu_item.Count)</span>
+                        }
+                    </li>
                 }
-            </li>
-        }
+            }
+        </ul>
     }
-</ul>
+    else{
+        <ul class="sidebar-menu-list" hide-action="hide">
+            @foreach (CMenuItem menu_item in Model)
+            {
+                @if (menu_item.Count > 0)
+                {
+                    <li><a href="@menu_item.Url">@menu_item.Title</a> 
+                        @if (Model.ShowCount)
+                        {
+                            <span>(@menu_item.Count)</span>
+                        }
+                    </li>
+                }
+            }
+        </ul>
+
+        
+    }
+    
+</div>

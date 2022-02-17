@@ -35,6 +35,17 @@ public class CPostsService
         post_.CreatedDate = post.CreatedDate;
         DB.SaveChanges();
     }
+    public CPost? SetLikes(string postid, string acttype)
+    {
+        CPost post = DB.Posts.Find(int.Parse(postid));
+        if (post == null) return null;
+        if (acttype == "like") post.Likes++;
+        else if (post.Likes > 0) post.Likes--;
+
+        DB.SaveChanges();
+
+        return post;
+    }
     public void DeletePost(int? id)
     {
         if (id == null) return;

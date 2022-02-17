@@ -1,0 +1,14 @@
+﻿@model CPost
+@{
+    var favorites = (List<string>)Context.Items["favorites"];
+}
+<div class="favorite-action" post-id="@Model.Id" >
+    @if (favorites.Contains(@Model.Id.ToString()))
+    {
+        <button class="favorite-btn in-favorites" type="button" fav-action="from-fav">favorite</button>
+    }
+    else
+    {
+        <button class="favorite-btn" type="button" fav-action="to-fav">to favorites</button>
+    }
+</div>
