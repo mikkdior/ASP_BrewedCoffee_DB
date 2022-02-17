@@ -1,6 +1,6 @@
 ﻿@model CHomeViewModel
 <div id="content">
-    @await Html.PartialAsync("_Sketches", Model.CurrentPosts)
+    @await Html.PartialAsync("_Posts", Model.CurrentPosts)
     @if (Model.AllFilteredPostsNum > Model.PostsPerPage)
     {
         @await Html.PartialAsync("_Pagination", Model)

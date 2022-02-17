@@ -4,4 +4,4 @@
     <h2 class="no-posts">There is no posts in here</h2>
 }
 @foreach (CPost post in Model)
-    @await Html.PartialAsync("_Sketch", post)
+    @await Html.PartialAsync("_Post", post)

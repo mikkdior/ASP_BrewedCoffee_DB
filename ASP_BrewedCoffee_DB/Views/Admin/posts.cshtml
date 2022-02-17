@@ -1,26 +1,9 @@
 ﻿@model CAdminPostsViewModel
-@inject IConfiguration Config
 @{
     ViewData["Title"] = "Admin Posts Page";
 }
 <div class="admin-content">
-    <ul class="admin-menu">
-        <li>
-            <a href="@Config["route_admin-posts"]">Show Posts</a>
-        </li>
-        <li>
-            <a href="@Config["route_admin-categories"]"> Show Categories</a>
-        </li>
-        <li>
-            <a href='/'>Return to Main</a>
-        </li>
-        <li>
-            <a href='#'>Enter the Matrix</a>
-        </li>
-        <li>
-            <a href='@Config["route_logout"]'>Log out</a>
-        </li>
-    </ul>
+    @await Html.PartialAsync("_AdminMenu")
     <div class="open-post-id">
         <span>Open post by id:</span> 
         <form method="get" action="@Config["route_admin-edit-post"].Replace("{id:int?}", string.Empty)">

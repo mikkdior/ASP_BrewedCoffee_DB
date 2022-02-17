@@ -1,4 +1,7 @@
-﻿@{
+﻿@model bool
+@{
     ViewData["Title"] = "Admin Main Page";
 }
-@await Html.PartialAsync("_FormLogin")
+<div class="admin-content">
+    @await Html.PartialAsync("_FormLogin", Model)
+</div>

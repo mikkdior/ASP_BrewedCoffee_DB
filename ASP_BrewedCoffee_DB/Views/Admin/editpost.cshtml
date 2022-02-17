@@ -1,26 +1,9 @@
 ﻿@model CPost
-@inject IConfiguration Config
 @{
     ViewData["Title"] = "Admin Edit Post Page";
 }
 <div class="admin-content">
-    <ul class="admin-menu">
-        <li>
-            <a href="@Config["route_admin-posts"]">Show Posts</a>
-        </li>
-        <li>
-            <a href="@Config["route_admin-categories"]"> Show Categories</a>
-        </li>
-        <li>
-            <a href='/'>Return to Main</a>
-        </li>
-        <li>
-            <a href='#'>Enter the Matrix</a>
-        </li>
-        <li>
-            <a href='@Config["route_logout"]'>Log out</a>
-        </li>
-    </ul>
+    @await Html.PartialAsync("_AdminMenu")
     <a class="admin-back-button" href='@Config["route_admin-posts"]'>Cancel</a>
     @if (Model.Title == null)
     {

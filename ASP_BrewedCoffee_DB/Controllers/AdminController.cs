@@ -69,13 +69,10 @@ public class AdminController : Controller
     }
     public IActionResult DeletePost(int? id)
     {
-        if (IsAdmin())
-        {
-            PostsModel.DeletePost(id.Value);
+        if (!IsAdmin()) return Redirect(Config["route_admin"]);
+        PostsModel.DeletePost(id.Value);
 
-            return Redirect(Config["route_admin-posts"]);
-        }
-        return Redirect(Config["route_admin"]);
+        return Redirect(Config["route_admin-posts"]);
     }
     // тут пользователь идет по пути с возможностью добавления
     // айди. если айди есть - форма заполняется данными во вьюшке. Если нет - приходит пустая форма для 
@@ -105,12 +102,9 @@ public class AdminController : Controller
     }
     public IActionResult DeleteCategory(int? id)
     {
-        if (IsAdmin())
-        {
-            CategoriesModel.DeleteCat(id.Value);
+        if (!IsAdmin()) return Redirect(Config["route_admin"]);
+        CategoriesModel.DeleteCat(id.Value);
 
-            return Redirect(Config["route_admin-categories"]);
-        }
-        return Redirect(Config["route_admin"]);
+        return Redirect(Config["route_admin-categories"]);
     }
 }
