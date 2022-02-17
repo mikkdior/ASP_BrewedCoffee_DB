@@ -41,7 +41,7 @@
             }, 100);
             let acttype = btn.getAttribute('like-action');
             let postid = act.getAttribute('post-id');
-            let req = acttype == "like" ? req_like : req_dislike;
+            let req = acttype == 'like' ? req_like : req_dislike;
             req.open('post', `/ajax-like/?postid=${postid}&acttype=${acttype}`);
             req.send();
         });
@@ -52,7 +52,7 @@
         let req_to_fav = new XMLHttpRequest();
         let req_from_fav = new XMLHttpRequest();
         let btn = act.querySelector('.favorite-btn')
-        //let is_in_fav = false;
+
         // реагистрация обработчиков после отправки 
         req_to_fav.onload = () => {
             if (req_to_fav.status != 200) return;
@@ -78,7 +78,7 @@
 
             let acttype = btn.getAttribute('fav-action');
             let postid = act.getAttribute('post-id');
-            let req = acttype == "to-fav" ? req_to_fav : req_from_fav;
+            let req = acttype == 'to-fav' ? req_to_fav : req_from_fav;
             req.open('post', `/ajax-favorite/?postid=${postid}`);
             req.send();
         });
@@ -92,6 +92,7 @@
             let list = link.parentNode.querySelector('.sidebar-menu-list');
             let menu_title = link.querySelector('h2').innerText;
 
+            // реагистрация обработчиков после отправки
             req_show.onload = () => {
                 if (req.status != 200) return;
                 list.classList.remove('hidden-list');
@@ -105,11 +106,19 @@
 
             // Привязываем отправку
             let acttype = list.getAttribute('hide-action');
-            let req = acttype == "show" ? req_show : req_hide;
+            let req = acttype == 'show' ? req_show : req_hide;
             req.open('post', `/ajax-hidemenu/?title=${menu_title}`);
             req.send();
 
             e.preventDefault();
+        });
+    });
+
+    //confirm delete admin-list-item
+    document.querySelectorAll('.admin-list-item .del').forEach((link) => {
+        link.addEventListener('click', (e) => {
+            if (!confirm('Are you sure ? You can`t restore this data after deleting.'))
+                e.preventDefault();
         });
     });
 });
