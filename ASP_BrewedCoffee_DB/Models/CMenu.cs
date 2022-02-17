@@ -14,12 +14,12 @@ public class CMenu : List<CMenuItem>
 }
 public class CMenuFactory
 {
-    public CMenu Create(IBuildMenuStrategy strategy, string menu_title, bool show_count)
-        => strategy.GetMenuData(menu_title, show_count);
+    public CMenu Create(IBuildMenuStrategy strategy, string menu_title, bool show_count, string groups_slug)
+        => strategy.GetMenuData(menu_title, show_count, groups_slug);
 }
 public class CBuildCategoryStrategy : IBuildMenuStrategy
 {
-    public CMenu GetMenuData(string menu_title, bool show_count)
+    public CMenu GetMenuData(string menu_title, bool show_count, string groups_slug)
     {
         var menu = new CMenu() { Title = menu_title, ShowCount = show_count };
         string m_title = menu_title.ToLower();
@@ -30,7 +30,7 @@ public class CBuildCategoryStrategy : IBuildMenuStrategy
             { 
                 Id = cat.Id, 
                 Title = cat.Title, 
-                Url = $"/{m_title}/{cat.Slug}",
+                Url = $"/{groups_slug}/{cat.Slug}",
                 Slug = cat.Slug
             };
             menu.Add(m_item);
@@ -46,24 +46,23 @@ public class CBuildCategoryStrategy : IBuildMenuStrategy
 }
 public class CBuildArchiveStrategy : IBuildMenuStrategy
 {
-    public CMenu GetMenuData(string menu_title, bool show_count)
+    public CMenu GetMenuData(string menu_title, bool show_count, string groups_slug)
     {
-        string m_title = menu_title.ToLower();
         var menu = new CMenu()
         {
-            new CMenuItem(){ Title = "Old", Url = $"/{m_title}/old", Slug = "old" },
-            new CMenuItem(){ Title = "January", Url = $"/{m_title}/jan", Slug = "jan" },
-            new CMenuItem(){ Title = "February", Url = $"/{m_title}/feb", Slug = "feb" },
-            new CMenuItem(){ Title = "March", Url = $"/{m_title}/mar", Slug = "mar" },
-            new CMenuItem(){ Title = "April", Url = $"/{m_title}/apr", Slug = "apr" },
-            new CMenuItem(){ Title = "May", Url = $"/{m_title}/may", Slug = "may" },
-            new CMenuItem(){ Title = "June", Url = $"/{m_title}/jun", Slug = "jun" },
-            new CMenuItem(){ Title = "July", Url = $"/{m_title}/jul", Slug = "jul" },
-            new CMenuItem(){ Title = "August", Url = $"/{m_title}/aug", Slug = "aug" },
-            new CMenuItem(){ Title = "September", Url = $"/{m_title}/sep", Slug = "sep" },
-            new CMenuItem(){ Title = "October", Url = $"/{m_title}/oct", Slug = "oct" },
-            new CMenuItem(){ Title = "November", Url = $"/{m_title}/nov", Slug = "nov" },
-            new CMenuItem(){ Title = "December", Url = $"/{m_title}/dec", Slug = "dec" },
+            new CMenuItem(){ Title = "Old", Url = $"/{groups_slug}/old", Slug = "old" },
+            new CMenuItem(){ Title = "January", Url = $"/{groups_slug}/jan", Slug = "jan" },
+            new CMenuItem(){ Title = "February", Url = $"/{groups_slug}/feb", Slug = "feb" },
+            new CMenuItem(){ Title = "March", Url = $"/{groups_slug}/mar", Slug = "mar" },
+            new CMenuItem(){ Title = "April", Url = $"/{groups_slug}/apr", Slug = "apr" },
+            new CMenuItem(){ Title = "May", Url = $"/{groups_slug}/may", Slug = "may" },
+            new CMenuItem(){ Title = "June", Url = $"/{groups_slug}/jun", Slug = "jun" },
+            new CMenuItem(){ Title = "July", Url = $"/{groups_slug}/jul", Slug = "jul" },
+            new CMenuItem(){ Title = "August", Url = $"/{groups_slug}/aug", Slug = "aug" },
+            new CMenuItem(){ Title = "September", Url = $"/{groups_slug}/sep", Slug = "sep" },
+            new CMenuItem(){ Title = "October", Url = $"/{groups_slug}/oct", Slug = "oct" },
+            new CMenuItem(){ Title = "November", Url = $"/{groups_slug}/nov", Slug = "nov" },
+            new CMenuItem(){ Title = "December", Url = $"/{groups_slug}/dec", Slug = "dec" },
         };
 
         menu.Title = menu_title;

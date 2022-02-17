@@ -1,15 +1,24 @@
 ﻿@inject IConfiguration Config
 @model CHomeViewModel
-<div id="sidebar">
+<div class="sidebar">
     <ul>
         <li>
-            <h2 id="favorites"><a class="favorite-sidebar" href="@Config["route_favorites"]">@Config["option_FavoritePosts"]</a></h2>
+            <a class="favorite-sidebar" href="@Config["route_favorites"]"><h2 id="favorites">@Config["option_FavoritePosts"]</h2></a>
         </li>
         <li>
             @await Html.PartialAsync("_SidebarMenu", Model.CategoriesMenu)
         </li>
         <li>
             @await Html.PartialAsync("_SidebarMenu", Model.ArchiveMenu)
+        </li>
+        <li>
+            @await Html.PartialAsync("_FillerSidebarMenu", "Solar System")
+        </li>
+        <li>
+            @await Html.PartialAsync("_FillerSidebarMenu", "Wild Nature")
+        </li>
+        <li>
+            @await Html.PartialAsync("_FillerSidebarMenu", "Showdown")
         </li>
     </ul>
 </div>

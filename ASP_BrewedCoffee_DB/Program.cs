@@ -36,8 +36,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
 app.UseSession();
-app.UseMyFavorites();
-app.UseMyLikes();
+app.UseMySessionData();
 //--------------------------------------------------
 routes_service.SetRoutes(app);
 app.Run();

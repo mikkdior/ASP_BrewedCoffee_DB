@@ -1,0 +1,23 @@
+﻿@model string
+@{
+    var hidden_menus = (List<string>)Context.Items["hiddenmenus"];
+}
+<div class="sidebar-menu">
+    <a href="#" class="sidebar-menu-link "><h2>@Model</h2></a>
+    @if (hidden_menus != null && hidden_menus.Contains(Model)){
+        <ul class="sidebar-menu-list hidden-list" hide-action="show">
+            @for (int i = 0; i < 3; i++)
+            {
+                <li><a href="#">- - - - - - - - - - - - - - - - - - - -</a> </li>
+            }
+        </ul>
+    }
+    else{
+        <ul class="sidebar-menu-list" hide-action="hide">
+            @for (int i = 0; i < 3; i++)
+            {
+                <li><a href="#">- - - - - - - - - - - - - - - - - - - -</a> </li>
+            }
+        </ul>
+    }
+</div>
