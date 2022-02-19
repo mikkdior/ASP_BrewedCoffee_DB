@@ -1,8 +1,5 @@
 ﻿@model CHomeViewModel
 <div id="content">
     @await Html.PartialAsync("_Posts", Model.CurrentPosts)
-    @if (Model.AllFilteredPostsNum > Model.PostsPerPage)
-    {
-        @await Html.PartialAsync("_Pagination", Model)
-    }
+    <pagination pagination-model="new CPagination(Model)" page-key="page"></pagination>
 </div>

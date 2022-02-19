@@ -1,7 +1,9 @@
 ﻿@model CHomeViewModel
-<div class="sidebar">
+<div id="sidebar">
     <ul>
         <li>
+            @*<a asp-route="favorites"><h2 id="favorites">@Config["option_FavoritePosts"]</h2></a>
+            <a asp-controller="Home" asp-action="Favorites" asp-route-area=""><h2 id="favorites">@Config["option_FavoritePosts"]</h2></a>*@
             <a class="favorite-sidebar" href="@Config["route_favorites"]"><h2 id="favorites">@Config["option_FavoritePosts"]</h2></a>
         </li>
         <li>

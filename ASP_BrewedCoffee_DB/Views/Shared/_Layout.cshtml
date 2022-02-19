@@ -11,19 +11,39 @@ Released   : 20090411
 
 -->
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <title>@Config["MainPageTitle"]</title>
-    <meta name="keywords" content="" />
-    <meta name="description" content="" />
-    <link href="@Config["path_css-file"]" rel="stylesheet" type="text/css" media="screen" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-</head>
-
-<body>
-    @await Html.PartialAsync("_Header")
-    <div id="page">@RenderBody()</div>
-    @await Html.PartialAsync("_Footer")
-    <script type="text/javascript" src="/js/main.js"></script>
-</body>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <title>@Config["MainPageTitle"]</title>
+        <meta name="keywords" content="" />
+        <meta name="description" content="" />
+        <link href="@Config["path_css-file"]" rel="stylesheet" type="text/css" media="screen" asp-append-version="true"/>
+    </head>
+    <body>
+        @await Html.PartialAsync("_Header")
+        <div id="main">
+            @RenderBody()
+        </div>
+        @await Html.PartialAsync("_Footer")
+        <script type="text/javascript" src="/js/main.js" asp-append-version="true"></script>
+    </body>
 </html>
+
+@*<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+        <link href="@Config["path_css-file"]" rel="stylesheet" asp-append-version="true"/>
+        <title>@Config["MainPageTitle"]</title>
+    </head>
+    <body>
+        @await Html.PartialAsync("_Header")
+        <div id="main">
+            @RenderBody()
+        </div>
+        @await Html.PartialAsync("_Footer")
+        <script type="text/javascript" src="/js/main.js" asp-append-version="true"></script>
+    </body>
+</html>*@

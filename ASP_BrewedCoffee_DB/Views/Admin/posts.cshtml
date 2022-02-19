@@ -26,6 +26,6 @@
         }
     </ul>
     <a class="add-post-button" href="@Config["route_admin-edit-post"].Replace("{id:int?}", string.Empty)">Add new</a>
-    @await Html.PartialAsync("_Pagination", Model)
+    <pagination pagination-model="new CPagination(Model)" page-key="page"></pagination>
 </div>
     

@@ -4,7 +4,8 @@
 }
 <div class="sidebar-menu">
     <a href="#" class="sidebar-menu-link "><h2>@Model.Title</h2></a>
-    @if (hidden_menus != null && hidden_menus.Contains(Model.Title)){
+    @if (hidden_menus != null && hidden_menus.Contains(Model.Title))
+    {
         <ul class="sidebar-menu-list hidden-list" hide-action="show">
             @foreach (CMenuItem menu_item in Model)
             {
@@ -21,7 +22,8 @@
             }
         </ul>
     }
-    else{
+    else
+    {
         <ul class="sidebar-menu-list" hide-action="hide">
             @foreach (CMenuItem menu_item in Model)
             {
