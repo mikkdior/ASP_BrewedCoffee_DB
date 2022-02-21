@@ -1,10 +1,12 @@
 ﻿<div id="header">
-    @if (ViewBag.MainTitle == null)
-    {
-        <h1 class="home-title"><span>@Config["option_MainPageTitle"]</span></h1>
-    }
-    else
-    {
-        <h1 class="inner-page-title"><span>@ViewBag.MainTitle</span></h1>
-    }
+    <div class="header-wrapper">
+        @if (ViewBag.MainTitle == null)
+        {
+            <h1 class="home-title"><span>@Config["option_MainPageTitle"]</span></h1>
+        }
+        else
+        {
+            <h1 class="inner-page-title"><span>@ViewBag.MainTitle</span></h1>
+        }
+     </div>
 </div>

@@ -1,5 +1,4 @@
 @import "md-pagination.css";
-@import "media.css";
 html {
 	height: 100%;
 }
@@ -12,6 +11,7 @@ body {
 	color: #5C5116;
 	height: 100%;
     letter-spacing: 0.25px;
+	line-break: anywhere;
 }
 body, th, td, input, textarea, select, option {
 	font-family: Arial, Times, serif;
@@ -47,29 +47,34 @@ a {
 	width: 1200px;
 	margin: auto;
 }
+.header-wrapper{
+	position: relative;
+}
 /* Header */
 #header {
 	height: 300px;
 	margin: 0 auto;
 	background-position: fixed;
 	background: url(/images/img04.jpg) no-repeat left top;
+	background-color: transparent;
 }
 .home-title, .inner-page-title{
+	position: absolute;
+	right: 0;
+    padding-top: 132px;
     text-align: end;
 	margin: 0;
 	font-family: Georgia, "Times New Roman", Times, serif;
 	color: #FFFFFF;
 	font-size: 74px;
-	padding: 132px 0 0 400px;
 	word-break: break-all;
 	text-decoration: none;
 	word-break: break-all;
 	text-decoration: none;
-	/* transform: scaleY(0.8); */
 }
 .inner-page-title{
+	padding-top: 145px;
 	font-size: 60px;
-	padding: 145px 0 0 0;
 	text-shadow:  -1px 0 white, 0 -2px black, 0px 0 black, 0 0px black;
 }
 #home-page-button h2{
@@ -110,7 +115,6 @@ a {
 	position: relative;
 }
 .post-title {
-	line-break: anywhere;
 	margin: 0;
 	padding-left: 30px;
 	font-size: 24px;
@@ -138,11 +142,13 @@ a {
 }
 /* Sidebar */
 #sidebar {
-	width: 300px;
+	width: 240px;
 	padding-top: 50px;
 	color: #827736;
+	margin-left: 50px;
 }
 #sidebar ul {
+    padding-left: 0;
 	list-style: none;
 }
 .sidebar-menu-list {

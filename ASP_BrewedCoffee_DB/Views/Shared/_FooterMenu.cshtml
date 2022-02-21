@@ -1,26 +1,24 @@
 ﻿@{ CFooterMenuM menu = new CFooterMenuM().ParseMenu(Config["option_FooterMenuDict"], Config["option_FooterMenuTitle"]); }
-<div class="footer-menu">
-    <ul>
+<ul class="footer-menu">
+    <li>
+        <span>&copy;@menu.Year @menu.Title</span>
+    </li>
+    @for (int i = 0; i < menu.Count; i++)
+    {
         <li>
-            <span>&copy;@menu.Year @menu.Title</span>
+            @if (i < menu.Count)
+            {
+                <span>&nbsp; &bull; &nbsp;</span>
+            }
+            @foreach (var pair in menu[i])
+            {
+                <span>@pair.Key</span>
+                @foreach (var pair2 in pair.Value) 
+                { 
+                    <a href="@pair2.Value">@pair2.Key</a>
+                }
+            }
         </li>
-        @for (int i = 0; i < menu.Count; i++)
-        {
-            <li>
-                @if (i < menu.Count)
-                {
-                    <span>&nbsp; &bull; &nbsp;</span>
-                }
-                @foreach (var pair in menu[i])
-                {
-                    <span>@pair.Key</span>
-                    @foreach (var pair2 in pair.Value) 
-                    { 
-                        <a href="@pair2.Value">@pair2.Key</a>
-                    }
-                }
-            </li>
-        }
-    </ul>
-</div>
+    }
+</ul>
 

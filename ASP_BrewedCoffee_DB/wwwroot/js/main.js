@@ -1,5 +1,5 @@
 ﻿document.addEventListener('DOMContentLoaded', function () {
-
+    //анимируем плавное появление постов 
     (function(){
         let posts = document.querySelector('.posts');
         let counter = 0;

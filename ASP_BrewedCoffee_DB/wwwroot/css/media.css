@@ -1,15 +1,122 @@
-@media screen and (max-width: 1400px){
-    
+@media screen and (max-width: 1300px){
+    .container{
+        width: 1000px;
+    }
+    #content {
+        width: 650px;
+    }
+    #sidebar {
+        margin-left: 0;
+    }
+    .home-title, .inner-page-title{
+        font-size: 60px;
+        padding-top: 145px;
+    }
+    .post-title{
+        width: 75%;
+    }
 }
 @media (max-width: 1000px) {
-
+    .container{
+        width: 800px;
+    }
+    #content {
+        width: 626px;
+    }
+    #sidebar {
+        margin-right: 23px;
+    }
+    .post-title{
+        width: 65%;
+    }
+    .home-title, .inner-page-title{
+        font-size: 52px;
+        padding-top: 152px;
+    }
 }
 @media (max-width: 800px) {
-
+    .container{
+        width: 700px;
+    }
+    #content {
+        width: 80%;
+        margin: auto;
+        margin-top: -100px;
+    }
+    #sidebar {
+        display: none;
+    }
+    .post-title{
+        width: 70%;
+    }
+    .home-title, .inner-page-title{
+        font-size: 52px;
+        padding-top: 2px;
+        padding-right: 35px;
+    }
+    #header{
+        background: none;
+        height: 150px;
+    }
+}
+@media (max-width: 700px) {
+    .container{
+        width: 500px;
+    }
+    #content {
+        width: 400px;
+    }
+    #sidebar {
+        width: 100px;
+    }
+    #header{
+        height: 137px;
+    }
+    .post-title{
+        width: 60%;
+    }
+    .home-title, .inner-page-title{
+        font-size: 40px;
+        padding-top: 0;
+        padding-right: 15px;
+    }
 }
 @media (max-width: 500px) {
-
+    .container{
+        width: 400px;
+    }
+    #content {
+        width: 350px;
+    }
+    .post-title{
+        width: 55%;
+        font-size: 18px;
+        padding: 0;
+    }
+    .post-byline{
+        padding: 0;
+    }
+    .home-title, .inner-page-title{
+        font-size: 27px;
+        padding-right: 0px;
+    }
+    .post-image-box{
+        display: none;
+    }
+}
+@media (max-width: 500px) {
+    .container{
+        width: 320px;
+    }
+    #content {
+        width: 320px;
+    }
 }
 @media (max-width: 320px) {
-
+    .container{
+        width: 100%;
+    }
+    #content {
+        width: 100%;
+    }
 }
