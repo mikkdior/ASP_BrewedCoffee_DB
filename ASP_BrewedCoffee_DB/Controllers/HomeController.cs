@@ -16,7 +16,7 @@ public class HomeController : Controller
             ArchiveMenu = CHelper.SortArchive(new CMenuFactory().Create(new CBuildArchiveStrategy(), Config["option_ArchMenuTitle"], true, Config["option_ArchiveSlug"])),
             CurrentPosts = PostsService.GetPosts().Take(int.Parse(Config["option_PostsOnHome"]))
         });
-    public IActionResult Category(string slug, int page = 1) 
+    public IActionResult Category([FromServices] CCategoriesService cats_serrvice, string slug, int page = 1) 
     {
         int num = int.Parse(Config["option_PostsPerPage"]);
         var cat_menu = new CMenuFactory().Create(new CBuildCategoryStrategy(), Config["option_CatMenuTitle"], true, Config["option_CategoriesSlug"]);
@@ -24,6 +24,7 @@ public class HomeController : Controller
         IEnumerable<CPost> all_filtered_posts = PostsService.GetPosts(cat_id);
         int all_filtered_posts_num = all_filtered_posts.Count();
         page = CHelper.ValidatePage(page, all_filtered_posts_num, num);
+        ViewBag.MainTitle = cats_serrvice.GetCat(cat_id).Title;
         //--------------------------------------------
         return View(new CHomeViewModel() 
         {
@@ -44,6 +45,7 @@ public class HomeController : Controller
         var sorted_arch_menu = CHelper.SortArchive(arch_menu);
         int all_filtered_posts_num = all_filtered_posts.Count();
         page = CHelper.ValidatePage(page, all_filtered_posts_num, num);
+        ViewBag.MainTitle = CHelper.GetMonthBySlug(month, sorted_arch_menu);
         //------------------------------------------------
         return View(new CHomeViewModel()
         {
@@ -61,6 +63,7 @@ public class HomeController : Controller
         IEnumerable<CPost> all_filtered_posts = PostsService.GetFavoritePosts(HttpContext);
         int all_filtered_posts_num = all_filtered_posts.Count();
         page = CHelper.ValidatePage(page, all_filtered_posts_num, num);
+        ViewBag.MainTitle = Config["option_FavoritePosts"];
         //------------------------------------------------
         return View(new CHomeViewModel()
         {

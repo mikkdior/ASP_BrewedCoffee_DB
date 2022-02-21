@@ -1,11 +1,24 @@
 ﻿document.addEventListener('DOMContentLoaded', function () {
+
+    (function(){
+        let posts = document.querySelector('.posts');
+        let counter = 0;
+        posts.style.opacity = "0%";
+        let opacity_tf = setInterval(() => {
+            counter += 3;
+            posts.style.opacity = counter + "%";
+            if (posts.style.opacity >= 100)
+              clearInterval(opacity_tf);
+        }, 1);
+    })();
+
     //ajax-like. анимируем кнопку лайка
     document.querySelectorAll('.post .like-action').forEach((act, i) => {
         let req_like = new XMLHttpRequest();
         let req_dislike = new XMLHttpRequest();
         let btn = act.querySelector('.btn-likes-action')
 
-        // реагистрация обработчиков после отправки 
+        // реагистрация обработчиков после отправки
         req_like.onload = () => {
             if (req_like.status != 200) return;
 
@@ -53,7 +66,7 @@
         let req_from_fav = new XMLHttpRequest();
         let btn = act.querySelector('.favorite-btn')
 
-        // реагистрация обработчиков после отправки 
+        // реагистрация обработчиков после отправки
         req_to_fav.onload = () => {
             if (req_to_fav.status != 200) return;
             btn.innerText = 'favorite';

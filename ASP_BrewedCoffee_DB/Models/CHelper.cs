@@ -65,9 +65,14 @@ public static class CHelper
 
         return page;
     }
+    public static string GetMonthBySlug(string slug, CMenu arch_menu)
+    {
+         foreach (CMenuItem item in arch_menu) 
+            if (item.Slug == slug) return item.Title;
+
+        return "";
+    }
     public static string CropString(string text, int max_len) => text.Length < max_len ? text : text[0..max_len] + "...";
-    
-    
     public static void DeleteAllPosts(CPostsService post_model)
     {
         var posts = new List<CPost>();

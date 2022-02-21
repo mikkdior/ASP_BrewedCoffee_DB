@@ -1,6 +1,12 @@
 ﻿@model CHomeViewModel
 <div id="sidebar">
     <ul>
+        @if(@ViewBag.MainTitle != null)
+        {
+            <li id="home-page-button">
+                <a href="/"><h2>Home</h2></a>
+            </li>
+        }
         <li>
             @*<a asp-route="favorites"><h2 id="favorites">@Config["option_FavoritePosts"]</h2></a>
             <a asp-controller="Home" asp-action="Favorites" asp-route-area=""><h2 id="favorites">@Config["option_FavoritePosts"]</h2></a>*@

@@ -11,6 +11,7 @@ body {
 	text-align: justify;
 	color: #5C5116;
 	height: 100%;
+    letter-spacing: 0.25px;
 }
 body, th, td, input, textarea, select, option {
 	font-family: Arial, Times, serif;
@@ -42,77 +43,102 @@ blockquote p, blockquote ul, blockquote ol {
 a {
 	color: #413C20;
 }
+.container{
+	width: 1200px;
+	margin: auto;
+}
 /* Header */
 #header {
-	width: 900px;
 	height: 300px;
 	margin: 0 auto;
+	background-position: fixed;
 	background: url(/images/img04.jpg) no-repeat left top;
 }
-#header h1 {
-	float: right;
+.home-title, .inner-page-title{
+    text-align: end;
 	margin: 0;
 	font-family: Georgia, "Times New Roman", Times, serif;
 	color: #FFFFFF;
 	font-size: 74px;
 	padding: 132px 0 0 400px;
-}
-#header a {
+	word-break: break-all;
 	text-decoration: none;
-	color: white;
+	word-break: break-all;
+	text-decoration: none;
+	/* transform: scaleY(0.8); */
+}
+.inner-page-title{
+	font-size: 60px;
+	padding: 145px 0 0 0;
+	text-shadow:  -1px 0 white, 0 -2px black, 0px 0 black, 0 0px black;
+}
+#home-page-button h2{
+    border: 0.2mm ridge bisque;
+	color: bisque  !important;
 }
 /* Main */
 #main {
-	width: 900px;
+	width: 100%;
 	margin: 0 auto;
+	display: flex;
+	justify-content: space-between;
 }
 /* Content */
 #content {
-	float: right;
-	width: 560px;
+	width: 800px;
+	height: max-content;
 	margin-top: -100px;
 	margin-bottom: 30px;
 	padding: 30px 20px;
 	padding-bottom: 0;
 	background: #EBEBEB;
-	border: 10px solid #FFFFFF;
+	border: 13px solid #FFFFFF;
+    border-radius: 3px;
+	margin-left: auto;
 }
 .admin-content {
 	float: right;
-	width: 839px;
 	margin-top: -100px;
 	margin-bottom: 30px;
 	padding: 30px 20px 0 20px;
 	background: #EBEBEB;
 	border: 10px solid #FFFFFF;
+	width: 100%;
 }
 .post {
 	padding: 0px 0px 0 0px;
 	position: relative;
 }
-.title {
+.post-title {
 	line-break: anywhere;
 	margin: 0;
 	padding-left: 30px;
-	background: url(/images/img05.gif) no-repeat 0px 2px;
 	font-size: 24px;
 	font-family: Georgia, "Times New Roman", Times, serif;
 	color: #3B3513;
-	width: 70%;
+	width: 78%;
 }
-.byline {
+.post-byline {
 	padding-left: 33px;
 	border-bottom: 1px solid #CCCCCC;
 	color: #646464;
 	margin-top: 0;
 }
-.entry {
+.post-entry {
 	padding-bottom: 20px;
+}
+.post-image-box{
+	width: 23px;
+	height: 23px;
+	background: #5E5946;
+    transform: translateY(2px);
+	display: inline-block;
+	border-radius: 3px;
+	float: left;
 }
 /* Sidebar */
 #sidebar {
-	float: left;
-	width: 250px;
+	width: 300px;
 	padding-top: 50px;
 	color: #827736;
 }
@@ -145,12 +171,14 @@ a {
 }
 #sidebar h2 {
 	margin: 0;
-	height: 35px;
+	height: 30px;
 	padding: 8px 0px 5px 13px;
-	background: url(/images/img06.gif) no-repeat left top;
+	background: linear-gradient(0deg, #27220F, #353019);
+	margin-bottom: 10px;
 	font-family: Georgia, "Times New Roman", Times, serif;
 	font-size: 18px;
 	color: #CFBF66;
+	border-radius: 3px;
 }
 #sidebar h2:hover {
 	transform: scale(1.025);
@@ -172,15 +200,14 @@ a {
 }
 /* Footer */
 #footer {
-	clear: both;
 	width: 100%;
-	margin: 0;
-	padding: 0;
 	background: url(/images/img02.gif) repeat-x left top;
 	text-align: center;
 	font-size: smaller;
 	font-family: Arial, Helvetica, sans-serif;
 	color: #B1A356;
+	position: absolute;
+    left: 0;
 }
 .footer-menu {
 	padding: 20px 0 10px 0;
@@ -211,7 +238,7 @@ a {
 	top: 5px;
 	right: 0;
 	position: absolute;
-	border-radius: 5px;
+	border-radius: 3px;
 	border: 1px solid #3B3513;
 	font-size: 12px;
 	cursor: pointer;
@@ -220,7 +247,7 @@ a {
 	height: 18.5px;
 }
 .favorite-btn:hover {
-	box-shadow: 0px 0px 10px #3B3513;
+	box-shadow: 0px 0px 5px #3B3513;
 	font-size: 12.5px;
 	border: 1px solid #3B3513;
 	color: black;
@@ -249,7 +276,7 @@ a {
 	z-index: 1000;
 	background: transparent;
 	cursor: pointer;
-	border-radius: 5px;
+	border-radius: 3px;
 	line-height: 0;
 	color: lightgrey;
 }
@@ -272,7 +299,7 @@ a {
 	color: var(--red);
 }
 .btn-likes-action {
-	border-radius: 10px;
+	border-radius: 3px;
 	padding: 1px 1px;
 	width: 20px;
 	height: 18.5px;
@@ -287,9 +314,9 @@ a {
 }
 .btn-likes-action:hover {
 	border-color: darkred;
-	box-shadow: 0px 0px 10px #3b3513;
+	box-shadow: 0px 0px 5px #3b3513;
 	line-height: 1.2;
-	border-radius: 5px;
+	border-radius: 3px;
 }
 .btn-like {
 	transition: 0.3s cubic-bezier(.21,.04,.26,.99);
@@ -303,6 +330,7 @@ a {
 	transition: all 200ms;
 	transform: scale(1.05);
 	padding-top: 1px;
+	color: rgb(209, 3, 3);
 }
 .btn-like-pressed {
 	transition: 0.1s cubic-bezier(.21,.04,.26,.99);
@@ -312,6 +340,13 @@ a {
 	width: 50px;
 	background-color: antiquewhite;
 	padding-right: 3px;
+}
+.btn-like-pressed:hover .btn-icon-like-pressed{
+	color: lightgrey;
+}
+.btn-like-pressed:hover{
+	background: transparent;
+	border: 1px solid lightgrey;
 }
 .btn-like.liked {
 	background: var(--red);
@@ -502,6 +537,7 @@ a {
 	line-height: 3.1;
 	margin-top: 30px;
 	cursor: pointer;
+	border-radius: 3px;
 }
 .admin-delete-big-button {
 	background: brown;
