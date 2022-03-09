@@ -17,7 +17,11 @@ public class AdminController : Controller
     }
     [NonAction]
     public bool IsAdmin() => AuthModel.CheckAuth(HttpContext);
-    public IActionResult Index() => IsAdmin() ? Redirect(Config["route_admin-posts"]) : View(true);
+    public IActionResult Index()
+    {
+        ViewBag.MainTitle = "Admin";
+        return IsAdmin() ? Redirect(Config["route_admin-posts"]) : View(true);
+    }
     // auth admin control post request
     [HttpPost]
     public IActionResult Index(RAdminData data) => AuthModel.Authorization(HttpContext, data) ? Redirect(Config["route_admin-posts"]) : View(false);
@@ -29,6 +33,7 @@ public class AdminController : Controller
     public IActionResult Posts(int page = 1) 
     {
         IEnumerable<CPost> all_posts = PostsModel.GetPosts();
+        ViewBag.MainTitle = "Admin";
 
         return IsAdmin() ? View(new CAdminPostsViewModel()
             {
@@ -38,7 +43,11 @@ public class AdminController : Controller
                 CurrentPosts = PostsModel.GetCurrentPosts(all_posts, page, int.Parse(Config["option_AdminPostsPerPage"]))
             }) : Redirect(Config["route_admin"]);
     }
-    public IActionResult Categories() => IsAdmin() ? View(CategoriesModel.GetCats()) : Redirect(Config["route_admin"]);
+    public IActionResult Categories()
+    {
+        ViewBag.MainTitle = "Admin";
+        return IsAdmin() ? View(CategoriesModel.GetCats()) : Redirect(Config["route_admin"]);
+    } 
     //---------------------------------------------------
     // тут пользователь идет по пути с возможностью добавления
     // айди. если айди есть - форма заполняется данными во вьюшке. Если нет - приходит пустая форма для 
@@ -50,6 +59,8 @@ public class AdminController : Controller
         if (id < 0) Redirect(Config["route_admin-posts"]);
 
         CPost post = PostsModel.GetPost(id);
+        ViewBag.MainTitle = "Admin";
+
         return View(post == null ? new CPost() : post);
     } 
     // тут будет только после пост запроса отрабатывать этот метод. т.е. уже принимать заполненную
@@ -64,6 +75,8 @@ public class AdminController : Controller
         else if (HttpContext.Request.Form["action"] == "Delete")
             PostsModel.DeletePost(id.Value);
         else PostsModel.Edit(post, id.Value);
+
+        ViewBag.MainTitle = "Admin";
 
         return Redirect(Config["route_admin-posts"]);
     }
@@ -84,6 +97,8 @@ public class AdminController : Controller
         if (id < 0) Redirect(Config["route_admin-posts"]);
 
         CCategory cat = CategoriesModel.GetCat(id);
+        ViewBag.MainTitle = "Admin";
+
         return View(cat == null ? new CCategory() : cat);
     } 
     // тут будет только после пост запроса отрабатывать этот метод. т.е. уже принимать заполненную
@@ -97,6 +112,8 @@ public class AdminController : Controller
         else if (HttpContext.Request.Form["action"] == "Delete")
             CategoriesModel.DeleteCat(id.Value);
         else CategoriesModel.Edit(category, id.Value);
+
+        ViewBag.MainTitle = "Admin";
 
         return Redirect(Config["route_admin-categories"]); ;
     }

@@ -5,7 +5,7 @@ builder.Configuration.AddCSVProviderData();
 builder.Services.AddDbContext<CDBContext>();
 CConfService.DB = builder.Services.BuildServiceProvider().GetService<CDBContext>();
 builder.Configuration.AddDBProviderData();
-builder.Services.AddTransient<CRoutesService>();
+builder.Services.AddSingleton<CRoutesService>();
 builder.Services.AddSingleton<CApiService>();
 //--------------------------------------------------
 CRoutesService routes_service = builder.Services.BuildServiceProvider().GetService<CRoutesService>();

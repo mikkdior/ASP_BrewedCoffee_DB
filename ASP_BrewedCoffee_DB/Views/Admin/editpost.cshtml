@@ -2,7 +2,7 @@
 @{
     ViewData["Title"] = "Admin Edit Post Page";
 }
-<div class="admin-content">
+<div id="admin-content">
     @await Html.PartialAsync("_AdminMenu")
     <a class="admin-back-button" href='@Config["route_admin-posts"]'>Cancel</a>
     @if (Model.Title == null)
@@ -16,7 +16,7 @@
     <form method="post" action="#">
         <p>
             <label class="edit-post-title">
-                <input type="text" name="Title" value="@Model.Title"/>
+                @Html.TextBoxFor(m=>m.Title)
             </label>
         </p>
         <p>
@@ -33,7 +33,7 @@
                 }
                 else
                 {
-                    <input type="text" name="Author" value="@Model.Author"/>
+                    @Html.TextBoxFor(m=>m.Author)
                 }
             </label>
         </p>

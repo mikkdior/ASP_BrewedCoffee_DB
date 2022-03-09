@@ -1,5 +1,11 @@
 ﻿<div id="header">
     <div class="header-wrapper">
+        @if (ViewBag.MainTitle != "Admin")
+        {
+            <div class="hamburger-button-wrapper">
+                <button id="hamburger-button" class="animated-hamb-button" type="button">☰</button>
+            </div>
+        }
         @if (ViewBag.MainTitle == null)
         {
             <h1 class="home-title"><span>@Config["option_MainPageTitle"]</span></h1>

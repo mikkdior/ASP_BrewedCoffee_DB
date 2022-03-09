@@ -1,8 +1,7 @@
-﻿<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-@model CPost
+﻿@model CPost
 <div class="post">
     <div class="post-image-box"></div>
-    <h2 class="post-title">@Model.Title</h2>
+    <h3 class="post-title">@Model.Title</h3>
     @await Html.PartialAsync("_LikeAction", Model)
     @await Html.PartialAsync("_FavoriteAction", Model)
     <p class="post-byline"><small>Posted on @Model.CreatedDate.ToShortDateString() by @Model.Author</small></p>

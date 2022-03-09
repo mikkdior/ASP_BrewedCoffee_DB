@@ -2,7 +2,7 @@
 @{
     ViewData["Title"] = "Admin Edit Category Page";
 }
-<div class="admin-content">
+<div id="admin-content">
     @await Html.PartialAsync("_AdminMenu")
     
     <a class="admin-back-button" href='@Config["route_admin-categories"]'>Cancel</a>
@@ -18,13 +18,13 @@
         <p>
             <label class="edit-category-title">
                 <span>Title: </span>
-                <input type="text" name="Title" value="@Model.Title"/>
+                @Html.TextBoxFor(m=>m.Title)
             </label>
         </p>
         <p>
             <label>
                 <span class="edit-category-slug">Slug: </span>
-                <input type="text" name="Slug" value="@Model.Slug"/>
+                @Html.TextBoxFor(m=>m.Slug)
             </label>
         </p>
         

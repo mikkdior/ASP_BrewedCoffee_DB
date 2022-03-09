@@ -1,9 +1,12 @@
-@media screen and (max-width: 1300px){
+@media screen and (max-width: 1200px){
     .container{
-        width: 1000px;
+        width: 930px;
     }
     #content {
-        width: 650px;
+        width: 600px;
+    }
+    #admin-content {
+        width: 100%;
     }
     #sidebar {
         margin-left: 0;
@@ -18,10 +21,13 @@
 }
 @media (max-width: 1000px) {
     .container{
-        width: 800px;
+        width: 750px;
     }
     #content {
         width: 626px;
+    }
+    #admin-content {
+        width: 690px;
     }
     #sidebar {
         margin-right: 23px;
@@ -33,18 +39,52 @@
         font-size: 52px;
         padding-top: 152px;
     }
+    .hamburger-button-wrapper{
+    	display: none;
+    }
+    #sidebar {
+        display: block;
+        margin-left: 0px;
+        position: inherit;
+    }
+    .admin-posts-list div {
+        width: 620px;
+    }
 }
 @media (max-width: 800px) {
     .container{
         width: 700px;
+        margin-bottom: 50px;
     }
     #content {
         width: 80%;
         margin: auto;
         margin-top: -100px;
     }
+    #admin-content{
+        width: 81%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    /* .scrim{
+        opacity: 1;
+    } */
     #sidebar {
         display: none;
+        margin-left: -300px;
+        position: absolute;
+        z-index: 1;
+        background: #3B3513;
+        border-bottom-right-radius: 3px;
+        border-top-right-radius: 3px;
+        box-shadow: 16px 11px 40px 0px black;
+        left: 0;
+        padding-top: 0;
+        margin-top: -137px;
+    }
+    h2{
+        width: 100%;
+        margin-left: -7px;
     }
     .post-title{
         width: 70%;
@@ -54,9 +94,38 @@
         padding-top: 2px;
         padding-right: 35px;
     }
+    .admin-posts-list div {
+        width: 517px;
+    }
     #header{
         background: none;
         height: 150px;
+    }
+    #header::after {
+        background: none;
+        height: 150px;
+    }
+    #footer {
+        margin-top: 50px;
+        /*bottom: auto;*/
+    }
+    .admin-menu{
+        display: block;
+        height: auto;
+    }
+    .admin-menu li{
+        text-align: center;
+        margin-bottom: 10px;
+    }
+    .admin-back-button{
+        margin-top: 11px;
+    }
+    .hamburger-button-wrapper{
+    	display: inline-block;
+        z-index: 2;
+    }
+    .close-sidebar-button-wrapper{
+        display: block;
     }
 }
 @media (max-width: 700px) {
@@ -67,10 +136,14 @@
         width: 400px;
     }
     #sidebar {
-        width: 100px;
+        /* width: 100px; */
     }
     #header{
         height: 137px;
+    }
+    .hamburger-button-wrapper{
+        top: 4px;
+        left: 20px;
     }
     .post-title{
         width: 60%;
@@ -80,36 +153,66 @@
         padding-top: 0;
         padding-right: 15px;
     }
+    .admin-posts-list div {
+        width: 355px;
+    }
+    .admin-title{
+        white-space: nowrap;
+        margin-top: 100px;
+    }
 }
 @media (max-width: 500px) {
     .container{
-        width: 400px;
+        width: 320px;
     }
     #content {
-        width: 350px;
+        width: 250px;
     }
-    .post-title{
-        width: 55%;
+    #footer {
+        bottom: auto;
+    }
+    #hamburger-button {
+        font-size: 20px;
+    }
+    .post-title {
+        width: 50%;
         font-size: 18px;
         padding: 0;
     }
-    .post-byline{
+    .post-byline {
         padding: 0;
     }
-    .home-title, .inner-page-title{
-        font-size: 27px;
+    .home-title, .inner-page-title {
+        font-size: 30px;
         padding-right: 0px;
+        padding-top: 9px;
     }
-    .post-image-box{
+    .post-image-box {
         display: none;
     }
-}
-@media (max-width: 500px) {
-    .container{
-        width: 320px;
+    .admin-posts-list div {
+        width: 210px;
     }
-    #content {
-        width: 320px;
+    .hamburger-button-wrapper {
+        top: 10px;
+        left: 20px;
+    }
+    .open-post-id{
+        display: grid;
+    }
+    .open-post-id span{
+        margin-bottom: 10px;
+        text-align: center;
+    }
+    #admin-content label{
+        display: grid;
+    }
+    .edit-post-author input {
+        margin-left: 55px;
+    }
+    .hamburger-button-wrapper{
+        top: 10px;
+        left: 5px;
     }
 }
 @media (max-width: 320px) {

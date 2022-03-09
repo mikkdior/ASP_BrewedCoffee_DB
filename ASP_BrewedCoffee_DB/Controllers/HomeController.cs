@@ -10,12 +10,21 @@ public class HomeController : Controller
         PostsService = posts;
         Config = config;
     }
-    public IActionResult Index() => View(new CHomeViewModel()
+    public IActionResult Index(int page = 1) 
+    {
+        int num = int.Parse(Config["option_PostsOnHome"]);
+        IEnumerable<CPost> all_filtered_posts = PostsService.GetPosts();
+
+        return View(new CHomeViewModel()
         {
             CategoriesMenu = new CMenuFactory().Create(new CBuildCategoryStrategy(), Config["option_CatMenuTitle"], true, Config["option_CategoriesSlug"]),
             ArchiveMenu = CHelper.SortArchive(new CMenuFactory().Create(new CBuildArchiveStrategy(), Config["option_ArchMenuTitle"], true, Config["option_ArchiveSlug"])),
-            CurrentPosts = PostsService.GetPosts().Take(int.Parse(Config["option_PostsOnHome"]))
+            PostsPerPage = num,
+            Page = page,
+            CurrentPosts = PostsService.GetCurrentPosts(all_filtered_posts, page, num),
+            AllFilteredPostsNum = all_filtered_posts.Count()
         });
+    }
     public IActionResult Category([FromServices] CCategoriesService cats_serrvice, string slug, int page = 1) 
     {
         int num = int.Parse(Config["option_PostsPerPage"]);
